@@ -29,7 +29,7 @@ def main(page: Page):
 
 
 # Modo Desktop:
-flet.app(target=main)
+# flet.app(target=main)
 
 # Modo Web:
-# flet.app(target=main, view=flet.WEB_BROWSER)
+flet.app(target=main, view=flet.WEB_BROWSER)
