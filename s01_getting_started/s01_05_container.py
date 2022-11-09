@@ -3,7 +3,13 @@ from flet import Page, Row, Text
 
 
 def main(page: Page):
-    row_datos = Row(controls=[Text('Python'), Text('Flet'), Text('Flutter')])
+    lenguajes = ['Python', 'Flet', 'Flutter']
+    etiquetas = []
+
+    for e in lenguajes:
+        etiquetas.append(Text(e))
+
+    row_datos = Row(controls=etiquetas)
 
     page.add(row_datos)
 
