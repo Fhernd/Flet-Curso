@@ -10,7 +10,7 @@ def main(page: Page):
         else:
             nombre = txt_nombre.value
             page.clean()
-            page.add(Text(f'¡Hola... {nombre}'))
+            page.add(Text(f'¡Hola... {nombre}!'))
     
     txt_nombre = TextField(label='Su nombre')
 
