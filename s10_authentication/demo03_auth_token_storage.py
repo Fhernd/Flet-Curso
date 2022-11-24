@@ -30,4 +30,14 @@ def main(page: Page):
 
     AUTH_TOKEN_KEY = 'myapp.auth_token'
 
-    
+    def login(event):
+        saved_token = None
+
+        token = page.client_storage.get(AUTH_TOKEN_KEY)
+
+        if token:
+            saved_token = decrypt(token, secret_key)
+        
+        if event is not None or saved_token is not None:
+            page.login(provider, saved_token=saved_token, scope=['public_repo'])
+
