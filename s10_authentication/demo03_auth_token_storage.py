@@ -75,3 +75,10 @@ def main(page: Page):
                         title=Text(r['fullname'])
                     )
                 )
+
+    def logout_click(event):
+        page.client_storage.remove(AUTH_TOKEN_KEY)
+        page.logout()
+    
+    
+    
