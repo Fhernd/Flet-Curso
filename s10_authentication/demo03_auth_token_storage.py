@@ -40,4 +40,18 @@ def main(page: Page):
         
         if event is not None or saved_token is not None:
             page.login(provider, saved_token=saved_token, scope=['public_repo'])
+    
+    def on_login(event: LoginEvent):
+        if event.error:
+            raise Exception(event.error)
+        
+        token = page.auth.token.to_json()
+        token_encriptado = encrypt(token, secret_key)
+        page.client_storage.set(AUTH_TOKEN_KEY, token_encriptado)
 
+        lbl_user.value = f"¡Hola, {page.auth.user['name']}!"
+        toggle_login_buttons()
+        list_git_hub_repositories()
+        page.update()
+
+    
