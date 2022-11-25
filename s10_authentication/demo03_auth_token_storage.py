@@ -54,4 +54,24 @@ def main(page: Page):
         list_git_hub_repositories()
         page.update()
 
-    
+    def list_git_hub_repositories():
+        lvw_repositorios.controls.clear()
+        if page.auth:
+            headers = {
+                'Authorization': 'Bearer {}'.format(page.auth.token.access_token)
+            }
+
+            response = requests.get(
+                'https://api.github.com/user/repos',
+                headers=headers
+            )
+
+            repositorios = json.loads(response.text)
+
+            for r in repositorios:
+                lvw_repositorios.controls.append(
+                    ListTile(
+                        leading=Icon(icons.FOLDER_ROUNDED),
+                        title=Text(r['fullname'])
+                    )
+                )
