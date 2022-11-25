@@ -80,5 +80,9 @@ def main(page: Page):
         page.client_storage.remove(AUTH_TOKEN_KEY)
         page.logout()
     
+    def on_logout(event):
+        toggle_login_buttons()
+        list_git_hub_repositories
+        page.update()
     
     
