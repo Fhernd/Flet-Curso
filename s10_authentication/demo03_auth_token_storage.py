@@ -85,4 +85,9 @@ def main(page: Page):
         list_git_hub_repositories
         page.update()
     
+    def toggle_login_buttons():
+        btn_login.visible = page.auth is None
+        lbl_user.visible = btn_logout.visible = page.auth is not None
+    
+    
     
