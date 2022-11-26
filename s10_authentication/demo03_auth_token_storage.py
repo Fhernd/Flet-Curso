@@ -13,81 +13,90 @@ from flet import (
     Page,
     Row,
     Text,
-    icons
+    icons,
 )
 from flet.auth.providers.github_oauth_provider import GitHubOAuthProvider
 from flet.security import decrypt, encrypt
 
 
 def main(page: Page):
-    secret_key = os.getenv('MY_APP_SECRET_KEY')
+    # encryption passphrase
+    secret_key = os.getenv("MY_APP_SECRET_KEY")
+    secret_key = '@--#1232k23@--'
 
+    # configure provider
     provider = GitHubOAuthProvider(
-        client_id=os.getenv('GITHUB_CLIENT_ID'),
-        client_secret=os.getenv('GITHUB_CLIENT_SECRET'),
-        redirect_url='http://localhost:8550/api/oauth/redirect'
+        client_id=os.getenv("GIT_CLIENT_ID"),
+        client_secret=os.getenv("GIT_CLIENT_SECRET"),
+        redirect_url="http://localhost:8550/api/oauth/redirect",
     )
 
-    AUTH_TOKEN_KEY = 'myapp.auth_token'
+    # client storage keys
+    AUTH_TOKEN_KEY = "myapp.auth_token"
 
-    def login(event):
+    def perform_login(e):
+        # perform login
         saved_token = None
+        ejt = page.client_storage.get(AUTH_TOKEN_KEY)
+        if ejt:
+            saved_token = decrypt(ejt, secret_key)
+        if e is not None or saved_token is not None:
+            page.login(provider, saved_token=saved_token, scope=["public_repo"])
 
-        token = page.client_storage.get(AUTH_TOKEN_KEY)
+    def on_login(e: LoginEvent):
+        if e.error:
+            raise Exception(e.error)
 
-        if token:
-            saved_token = decrypt(token, secret_key)
-        
-        if event is not None or saved_token is not None:
-            page.login(provider, saved_token=saved_token, scope=['public_repo'])
-    
-    def on_login(event: LoginEvent):
-        if event.error:
-            raise Exception(event.error)
-        
-        token = page.auth.token.to_json()
-        token_encriptado = encrypt(token, secret_key)
-        page.client_storage.set(AUTH_TOKEN_KEY, token_encriptado)
+        # save token in a client storage
+        jt = page.auth.token.to_json()
+        ejt = encrypt(jt, secret_key)
+        page.client_storage.set(AUTH_TOKEN_KEY, ejt)
 
-        lbl_user.value = f"¡Hola, {page.auth.user['name']}!"
+        logged_user.value = f"Hello, {page.auth.user['name']}!"
         toggle_login_buttons()
-        list_git_hub_repositories()
+        list_github_repositories()
         page.update()
 
-    def list_git_hub_repositories():
-        lvw_repositorios.controls.clear()
+    def list_github_repositories():
+        repos_view.controls.clear()
         if page.auth:
             headers = {
-                'Authorization': 'Bearer {}'.format(page.auth.token.access_token)
+                "Authorization": "Bearer {}".format(page.auth.token.access_token)
             }
-
-            response = requests.get(
-                'https://api.github.com/user/repos',
-                headers=headers
+            repos_resp = requests.get(
+                "https://api.github.com/user/repos", headers=headers
             )
-
-            repositorios = json.loads(response.text)
-
-            for r in repositorios:
-                lvw_repositorios.controls.append(
+            user_repos = json.loads(repos_resp.text)
+            for repo in user_repos:
+                repos_view.controls.append(
                     ListTile(
                         leading=Icon(icons.FOLDER_ROUNDED),
-                        title=Text(r['fullname'])
+                        title=Text(repo["full_name"]),
                     )
                 )
 
-    def logout_click(event):
+    def logout_button_click(e):
         page.client_storage.remove(AUTH_TOKEN_KEY)
         page.logout()
-    
-    def on_logout(event):
+
+    def on_logout(e):
         toggle_login_buttons()
-        list_git_hub_repositories
+        list_github_repositories()
         page.update()
-    
+
     def toggle_login_buttons():
-        btn_login.visible = page.auth is None
-        lbl_user.visible = btn_logout.visible = page.auth is not None
-    
-    
-    
+        login_button.visible = page.auth is None
+        logged_user.visible = logout_button.visible = page.auth is not None
+
+    logged_user = Text()
+    login_button = ElevatedButton("Login with GitHub", on_click=perform_login)
+    logout_button = ElevatedButton("Logout", on_click=logout_button_click)
+    repos_view = ListView(expand=True)
+    page.on_login = on_login
+    page.on_logout = on_logout
+    toggle_login_buttons()
+    perform_login(None)
+    page.add(Row([logged_user, login_button, logout_button]), repos_view)
+
+
+flet.app(target=main, port=8550, view=flet.WEB_BROWSER)
