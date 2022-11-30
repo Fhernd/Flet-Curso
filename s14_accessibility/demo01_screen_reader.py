@@ -14,22 +14,22 @@ def main(page: Page):
 
     page.on_keyboard_event = on_keyboard
 
-    lbl_numero = Text('0', size=40)
+    lbl_numero = Text('10', size=40)
 
     def btn_incrementar_click(event):
-        lbl_numero.text = str(int(lbl_numero.text) + 1)
+        lbl_numero.value = str(int(lbl_numero.value) + 1)
         lbl_numero.update()
         page.update()
     
     btn_incrementar = FloatingActionButton(
         icon=icons.ADD,
         on_click=btn_incrementar_click,
-        tooltip='Incrementa valor numérico'
+        tooltip='Incrementa el valor numérico'
     )
 
     page.add(
         lbl_numero,
-        Text('Presione Ctlr+S para activar el lector de pantalla'),
+        Text('Presione la combinación de teclas Ctlr + S para activar el lector de pantalla'),
         btn_incrementar
     )
 
