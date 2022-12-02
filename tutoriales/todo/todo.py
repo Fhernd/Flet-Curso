@@ -1,5 +1,5 @@
 import flet
-from flet import Checkbox, Column, FloatingActionButton, IconButton, Page, Row, Text, TextField, UserControl, icons
+from flet import Checkbox, Column, FloatingActionButton, IconButton, Page, Row, Text, TextField, UserControl, colors, icons
 
 
 class Task(UserControl):
@@ -19,13 +19,42 @@ class Task(UserControl):
                 Row(
                     spacing=0,
                     controls=[
-                        IconButton(icon=icons.CREATE_OUTLINED, on_click=self.btn_edit_clicked),
+                        IconButton(icon=icons.CREATE_OUTLINED, 
+                        tooltip='Actualizar tarea',
+                        on_click=self.btn_edit_clicked),
+                        IconButton(icon=icons.DELETE_OUTLINED,
+                        tooltip='Eliminar tarea',
+                        on_click=self.btn_delete_clicked)
                     ]
                 )
             ]
         )
+
+        self.edit_view = Row(
+            visible=False,
+            alignment="spaceBetween",
+            vertical_alignment="center",
+            controls=[
+                self.txt_tarea,
+                IconButton(icon=icons.DONE_OUTLINE_OUTLINED,
+                color=colors.GREEN, 
+                tooltip='Actualizar tarea',
+                on_click=self.btn_save_clicked)
+            ])
+        
+        return Column(
+            controls=[
+                self.display_view,
+                self.edit_view
+            ])
     
     def btn_edit_clicked(self, event):
+        pass
+
+    def btn_delete_clicked(self, event):
+        pass
+
+    def btn_save_clicked(self, event):
         pass
         
 
