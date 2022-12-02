@@ -1,6 +1,33 @@
 import flet
-from flet import Checkbox, Column, FloatingActionButton, Page, Row, Text, TextField, UserControl, icons
+from flet import Checkbox, Column, FloatingActionButton, IconButton, Page, Row, Text, TextField, UserControl, icons
 
+
+class Task(UserControl):
+    def __init__(self, nombre_tarea):
+        super().__init__()
+        self.nombre_tarea = nombre_tarea
+
+    def build(self):
+        self.chk_tarea = Checkbox(value=False, label=self.nombre_tarea)
+        self.txt_tarea = TextField(expand=1)
+
+        self.display_view = Row(
+            alignment="spaceBetween",
+            vertical_alignment="center",
+            controls=[
+                self.chk_tarea,
+                Row(
+                    spacing=0,
+                    controls=[
+                        IconButton(icon=icons.CREATE_OUTLINED, on_click=self.btn_edit_clicked),
+                    ]
+                )
+            ]
+        )
+    
+    def btn_edit_clicked(self, event):
+        pass
+        
 
 class ToDoApp(UserControl):
     def build(self):
