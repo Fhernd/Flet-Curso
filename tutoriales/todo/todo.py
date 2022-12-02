@@ -11,7 +11,7 @@ def main(page: Page):
         txt_tarea.value = ''
         page.update()
     
-    txt_tarea = TextField(hint_text='¿Qué necesitas hacer?')
+    txt_tarea = TextField(hint_text='¿Qué necesitas hacer?', expand=True)
     btn_agregar_tarea = FloatingActionButton(icon=icons.ADD, on_click=btn_agregar_tarea_clicked)
 
     col_tareas = Column()
