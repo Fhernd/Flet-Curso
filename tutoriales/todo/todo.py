@@ -49,13 +49,19 @@ class Task(UserControl):
             ])
     
     def btn_edit_clicked(self, event):
-        pass
+        self.txt_tarea.value = self.chk_tarea.label
+        self.display_view.visible = False
+        self.edit_view.visible = True
+        self.update()
 
     def btn_delete_clicked(self, event):
         pass
 
     def btn_save_clicked(self, event):
-        pass
+        self.chk_tarea.label = self.txt_tarea.value
+        self.display_view.visible = True
+        self.edit_view.visible = False
+        self.update()
         
 
 class ToDoApp(UserControl):
