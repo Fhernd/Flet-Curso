@@ -1,5 +1,5 @@
 import flet
-from flet import Checkbox, Column, FloatingActionButton, IconButton, Page, Row, Text, TextField, UserControl, colors, icons
+from flet import Checkbox, Column, FloatingActionButton, IconButton, Page, Row, Tab, Tabs, Text, TextField, UserControl, colors, icons
 
 
 class Task(UserControl):
@@ -71,6 +71,17 @@ class ToDoApp(UserControl):
         btn_agregar_tarea = FloatingActionButton(icon=icons.ADD, on_click=self.btn_agregar_tarea_clicked)
 
         self.col_tareas = Column()
+
+        self.tabs_filter = Tabs(
+            selected_index=0,
+            on_change=self.tabs_changed,
+            tabs=[
+                Tab(text='Todas'),
+                Tab(text='Activas'),
+                Tab(text='Completadas')
+            ]
+        )
+
         col_controles = Column(
             width=600,
             controls=[
@@ -80,11 +91,20 @@ class ToDoApp(UserControl):
                         btn_agregar_tarea
                     ]
                 ),
-                self.col_tareas
+                Column(
+                    spacing=25,
+                    controls=[
+                        self.tabs_filter,
+                        self.col_tareas
+                    ],
+                )
             ]
         )
 
         return col_controles
+    
+    def tabs_changed(self, event):
+        pass
     
     def btn_agregar_tarea_clicked(self, event):
         tarea = Task(self.txt_tarea.value, self.delete_task)
@@ -96,6 +116,8 @@ class ToDoApp(UserControl):
         self.col_tareas.controls.remove(task)
         self.update()
 
+    def update(self):
+        status = 0
 
 def main(page: Page):
     
