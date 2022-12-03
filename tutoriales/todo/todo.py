@@ -3,9 +3,10 @@ from flet import Checkbox, Column, FloatingActionButton, IconButton, Page, Row, 
 
 
 class Task(UserControl):
-    def __init__(self, nombre_tarea):
+    def __init__(self, nombre_tarea, delete_callback):
         super().__init__()
         self.nombre_tarea = nombre_tarea
+        self.delete_callback = delete_callback
 
     def build(self):
         self.chk_tarea = Checkbox(value=False, label=self.nombre_tarea)
@@ -37,7 +38,7 @@ class Task(UserControl):
             controls=[
                 self.txt_tarea,
                 IconButton(icon=icons.DONE_OUTLINE_OUTLINED,
-                color=colors.GREEN, 
+                icon_color=colors.GREEN, 
                 tooltip='Actualizar tarea',
                 on_click=self.btn_save_clicked)
             ])
@@ -53,9 +54,9 @@ class Task(UserControl):
         self.display_view.visible = False
         self.edit_view.visible = True
         self.update()
-
+    
     def btn_delete_clicked(self, event):
-        pass
+        self.delete_callback(self)
 
     def btn_save_clicked(self, event):
         self.chk_tarea.label = self.txt_tarea.value
@@ -86,9 +87,13 @@ class ToDoApp(UserControl):
         return col_controles
     
     def btn_agregar_tarea_clicked(self, event):
-        tarea = Task(self.txt_tarea.value)
-        self.col_tareas.controls.append(Checkbox(label=self.txt_tarea.value))
+        tarea = Task(self.txt_tarea.value, self.delete_task)
+        self.col_tareas.controls.append(tarea)
         self.txt_tarea.value = ''
+        self.update()
+    
+    def delete_task(self, task):
+        self.col_tareas.controls.remove(task)
         self.update()
 
 
