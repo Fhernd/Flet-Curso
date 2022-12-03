@@ -117,7 +117,16 @@ class ToDoApp(UserControl):
         self.update()
 
     def update(self):
-        status = 0
+        status = self.tabs_filter.tabs[self.tabs_filter.selected_index].text
+
+        for t in self.col_tareas.controls:
+            t.visible = (
+                status == 'Todas' 
+                or (status == 'Activas' and True) 
+                or (status == 'Completadas' and False)
+            )
+        
+        super().update()
 
 def main(page: Page):
     
