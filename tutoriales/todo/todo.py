@@ -113,7 +113,7 @@ class ToDoApp(UserControl):
         self.update()
     
     def btn_agregar_tarea_clicked(self, event):
-        tarea = Task(self.txt_tarea.value, self.delete_task)
+        tarea = Task(self.txt_tarea.value, self.delete_task, self.task_status_changed)
         self.col_tareas.controls.append(tarea)
         self.txt_tarea.value = ''
         self.update()
@@ -125,14 +125,19 @@ class ToDoApp(UserControl):
     def update(self):
         status = self.tabs_filter.tabs[self.tabs_filter.selected_index].text
 
+        print(status)
+
         for t in self.col_tareas.controls:
             t.visible = (
                 status == 'Todas' 
-                or (status == 'Activas' and True) 
-                or (status == 'Completadas' and False)
+                or (status == 'Activas' and not t.completed) 
+                or (status == 'Completadas' and t.completed)
             )
         
         super().update()
+
+    def task_status_changed(self, task):
+        self.update()
 
 def main(page: Page):
     
