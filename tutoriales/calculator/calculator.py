@@ -17,10 +17,30 @@ def main(page: Page):
                 controls=[
                     Row(controls=[lbl_resultado], alignment='end'),
                     Row(controls=[
-                        ElevatedButton(text='AC'),
-                        ElevatedButton(text='+/-'),
-                        ElevatedButton(text='%'),
-                        ElevatedButton(text='/')
+                        ElevatedButton(
+                            text='AC',
+                            bgcolor=colors.BLUE_GREY_100,
+                            color=colors.BLACK,
+                            expand=1
+                        ),
+                        ElevatedButton(
+                            text='+/-',
+                            bgcolor=colors.BLUE_GREY_100,
+                            color=colors.BLACK,
+                            expand=1
+                        ),
+                        ElevatedButton(
+                            text='%',
+                            bgcolor=colors.BLUE_GREY_100,
+                            color=colors.BLACK,
+                            expand=1
+                        ),
+                        ElevatedButton(
+                            text='/',
+                            bgcolor=colors.ORANGE,
+                            color=colors.WHITE,
+                            expand=1
+                        )
                     ]),
                     Row(controls=[
                         ElevatedButton(text='7'),
