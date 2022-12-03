@@ -1,5 +1,5 @@
 import flet
-from flet import Checkbox, Column, FloatingActionButton, IconButton, Page, Row, Tab, Tabs, Text, TextField, UserControl, colors, icons
+from flet import Checkbox, Column, FloatingActionButton, IconButton, OutlinedButton, Page, Row, Tab, Tabs, Text, TextField, UserControl, colors, icons
 
 
 class Task(UserControl):
@@ -88,9 +88,17 @@ class ToDoApp(UserControl):
             ]
         )
 
+        self.lbl_tasks_left = Text('0 tareas pendientes')
+
         col_controles = Column(
             width=600,
             controls=[
+                Row(
+                    [
+                        Text(value='ToDo App', style='headlineMedium'),
+                    ],
+                    alignment='center'
+                ),
                 Row(
                     controls=[
                         self.txt_tarea,
@@ -101,7 +109,18 @@ class ToDoApp(UserControl):
                     spacing=25,
                     controls=[
                         self.tabs_filter,
-                        self.col_tareas
+                        self.col_tareas,
+                        Row(
+                            alignment='spaceBetween',
+                            vertical_alignment='center',
+                            controls=[
+                                self.lbl_tasks_left,
+                                OutlinedButton(
+                                    text='Eliminar todas',
+                                    on_click=self.delete_all_tasks
+                                )
+                            ]
+                        )
                     ],
                 )
             ]
@@ -109,6 +128,10 @@ class ToDoApp(UserControl):
 
         return col_controles
     
+    def delete_all_tasks(self, event):
+        for t in self.col_tareas.controls:
+            self.delete_task(t)
+
     def tabs_changed(self, event):
         self.update()
     
