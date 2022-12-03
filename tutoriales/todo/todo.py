@@ -3,13 +3,15 @@ from flet import Checkbox, Column, FloatingActionButton, IconButton, Page, Row, 
 
 
 class Task(UserControl):
-    def __init__(self, nombre_tarea, delete_callback):
+    def __init__(self, nombre_tarea, delete_callback, task_status_changed_callback):
         super().__init__()
+        self.completed = False
         self.nombre_tarea = nombre_tarea
         self.delete_callback = delete_callback
+        self.task_status_changed_callback = task_status_changed_callback
 
     def build(self):
-        self.chk_tarea = Checkbox(value=False, label=self.nombre_tarea)
+        self.chk_tarea = Checkbox(value=False, label=self.nombre_tarea, on_change=self.status_changed)
         self.txt_tarea = TextField(expand=1)
 
         self.display_view = Row(
@@ -63,6 +65,10 @@ class Task(UserControl):
         self.display_view.visible = True
         self.edit_view.visible = False
         self.update()
+
+    def status_changed(self, event):
+        self.completed = self.chk_tarea.value
+        self.task_status_changed_callback(self)
         
 
 class ToDoApp(UserControl):
