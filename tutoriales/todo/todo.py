@@ -148,7 +148,7 @@ class ToDoApp(UserControl):
     def update(self):
         status = self.tabs_filter.tabs[self.tabs_filter.selected_index].text
 
-        print(status)
+        count = 0
 
         for t in self.col_tareas.controls:
             t.visible = (
@@ -156,7 +156,12 @@ class ToDoApp(UserControl):
                 or (status == 'Activas' and not t.completed) 
                 or (status == 'Completadas' and t.completed)
             )
+
+            if not t.completed:
+                count += 1
         
+        self.lbl_tasks_left.value = f'{count} tareas pendientes'
+
         super().update()
 
     def task_status_changed(self, task):
