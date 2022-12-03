@@ -104,7 +104,7 @@ class ToDoApp(UserControl):
         return col_controles
     
     def tabs_changed(self, event):
-        pass
+        self.update()
     
     def btn_agregar_tarea_clicked(self, event):
         tarea = Task(self.txt_tarea.value, self.delete_task)
