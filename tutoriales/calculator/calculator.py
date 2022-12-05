@@ -4,7 +4,7 @@ from flet import Column, Container, ElevatedButton, Page, Row, Text, UserControl
 
 class CalculadoraApp(UserControl):
     def build(self):
-    
+        self.reset()
         lbl_resultado = Text(value='0', color=colors.WHITE, size=20)
 
         return Container(
@@ -189,6 +189,11 @@ class CalculadoraApp(UserControl):
             self.lbl_resultado.value = str(float(self.resultado) / 100)
         elif event.data == '=':
             self.lbl_resultado.value = ''
+    
+    def reset(self):
+        self.operador = '+'
+        self.operando1 = 0
+        self.operando2 = True
 
 
 def main(page: Page):
