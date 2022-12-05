@@ -1,14 +1,13 @@
 import flet
-from flet import Column, Container, ElevatedButton, Page, Row, Text, border_radius, colors
+from flet import Column, Container, ElevatedButton, Page, Row, Text, UserControl, border_radius, colors
 
 
-def main(page: Page):
-    page.title = 'Calculadora'
+class CalculadoraApp(UserControl):
+    def build(self):
     
-    lbl_resultado = Text(value='0', color=colors.WHITE, size=20)
+        lbl_resultado = Text(value='0', color=colors.WHITE, size=20)
 
-    page.add(
-        Container(
+        return Container(
             width=300,
             bgcolor=colors.BLACK,
             border_radius=border_radius.all(20),
@@ -142,7 +141,14 @@ def main(page: Page):
                 ]
             )
         )
-    )
+
+
+def main(page: Page):
+    page.title = 'Calculadora'
+
+    calculadora = CalculadoraApp()
+
+    page.add(calculadora)
 
 
 if __name__ == '__main__':
