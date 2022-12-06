@@ -230,6 +230,12 @@ class CalculadoraApp(UserControl):
         self.operador = '+'
         self.operando1 = 0
         self.operando2 = True
+    
+    def formatear_numero(self, numero):
+        if numero % 1 == 0:
+            return int(numero)
+        else:
+            return numero
 
 
 def main(page: Page):
