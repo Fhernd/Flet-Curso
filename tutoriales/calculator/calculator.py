@@ -186,9 +186,12 @@ class CalculadoraApp(UserControl):
         if self.lbl_resultado.value == 'Error' or data == 'AC':
             self.lbl_resultado.value = '0'
             self.reset()
-
-        if event.data == 'AC':
-            self.lbl_resultado.value = '0'
+        elif data in '0123456789.':
+            if self.lbl_resultado.value == '0' or self.operando2:
+                self.lbl_resultado.value = data
+                self.operando2 = False
+            else:
+                self.lbl_resultado.value += data
         elif event.data == '+/-':
             self.lbl_resultado.value = str(float(self.resultado) * -1)
         
