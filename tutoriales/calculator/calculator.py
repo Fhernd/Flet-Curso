@@ -181,14 +181,29 @@ class CalculadoraApp(UserControl):
         )
     
     def btn_action_clicked(self, event):
+        data = event.control.data
+
+        if self.lbl_resultado.value == 'Error' or data == 'AC':
+            self.lbl_resultado.value = '0'
+            self.reset()
+
         if event.data == 'AC':
             self.lbl_resultado.value = '0'
         elif event.data == '+/-':
             self.lbl_resultado.value = str(float(self.resultado) * -1)
+        
         elif event.data == '%':
-            self.lbl_resultado.value = str(float(self.resultado) / 100)
+            self.lbl_resultado.value = str(float(self.lbl_resultado) / 100)
+            self.reset()
+        
         elif event.data == '=':
-            self.lbl_resultado.value = ''
+            self.lbl_resultado.value = self.calcular(
+                self.operando1,
+                float(self.lbl_resultado.value),
+                self.operador
+            )
+
+            self.reset()
     
     def reset(self):
         self.operador = '+'
