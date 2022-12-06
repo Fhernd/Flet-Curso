@@ -214,7 +214,7 @@ class CalculadoraApp(UserControl):
                 self.lbl_resultado.value = str(self.formatear_numero(abs(float(self.lbl_resultado.value))))
         
         elif event.data == '%':
-            self.lbl_resultado.value = str(float(self.lbl_resultado) / 100)
+            self.lbl_resultado.value = str(float(self.lbl_resultado.value) / 100)
             self.reset()
         
         elif event.data == '=':
