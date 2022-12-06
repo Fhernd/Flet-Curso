@@ -5,7 +5,7 @@ from flet import Column, Container, ElevatedButton, Page, Row, Text, UserControl
 class CalculadoraApp(UserControl):
     def build(self):
         self.reset()
-        lbl_resultado = Text(value='0', color=colors.WHITE, size=20)
+        self.lbl_resultado = Text(value='0', color=colors.WHITE, size=20)
 
         return Container(
             width=300,
@@ -14,7 +14,7 @@ class CalculadoraApp(UserControl):
             padding=20,
             content=Column(
                 controls=[
-                    Row(controls=[lbl_resultado], alignment='end'),
+                    Row(controls=[self.lbl_resultado], alignment='end'),
                     Row(controls=[
                         ElevatedButton(
                             text='AC',
@@ -207,17 +207,17 @@ class CalculadoraApp(UserControl):
                 self.operando1 = float(self.lbl_resultado.value)
             
             self.operando2 = True
-        elif event.data == '+/-':
+        elif data == '+/-':
             if float(self.lbl_resultado.value) > 0:
                 self.lbl_resultado.value = '-' + self.lbl_resultado.value
             elif float(self.lbl_resultado.value) < 0:
                 self.lbl_resultado.value = str(self.formatear_numero(abs(float(self.lbl_resultado.value))))
         
-        elif event.data == '%':
+        elif data == '%':
             self.lbl_resultado.value = str(float(self.lbl_resultado.value) / 100)
             self.reset()
         
-        elif event.data == '=':
+        elif data == '=':
             self.lbl_resultado.value = self.calcular(
                 self.operando1,
                 float(self.lbl_resultado.value),
@@ -225,6 +225,8 @@ class CalculadoraApp(UserControl):
             )
 
             self.reset()
+        
+        self.update()
     
     def reset(self):
         self.operador = '+'
