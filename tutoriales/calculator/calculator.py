@@ -192,6 +192,21 @@ class CalculadoraApp(UserControl):
                 self.operando2 = False
             else:
                 self.lbl_resultado.value += data
+        elif data in '+-*/':
+            self.lbl_resultado.value = self.calcular(
+                self.operando1,
+                float(self.lbl_resultado.value),
+                self.operador
+            )
+
+            self.operador = data
+
+            if self.lbl_resultado.value == 'Error':
+                self.operando1 = '0'
+            else:
+                self.operando1 = float(self.lbl_resultado.value)
+            
+            self.operando2 = True
         elif event.data == '+/-':
             self.lbl_resultado.value = str(float(self.resultado) * -1)
         
