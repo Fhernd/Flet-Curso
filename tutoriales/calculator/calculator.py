@@ -237,6 +237,19 @@ class CalculadoraApp(UserControl):
         else:
             return numero
 
+    def calcular(self, operando1, operando2, operador):
+        if operador == '+':
+            return str(self.formatear_numero(operando1 + operando2))
+        elif operador == '-':
+            return str(self.formatear_numero(operando1 - operando2))
+        elif operador == '*':
+            return str(self.formatear_numero(operando1 * operando2))
+        elif operador == '/':
+            if operando2 == 0:
+                return 'Error'
+            else:
+                return str(self.formatear_numero(operando1 / operando2))
+
 
 def main(page: Page):
     page.title = 'Calculadora'
