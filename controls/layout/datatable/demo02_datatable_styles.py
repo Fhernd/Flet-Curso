@@ -20,4 +20,16 @@ def main(page: Page):
         show_checkbox_column=True,
         divider_thickness=0,
         column_spacing=200,
+        columns=[
+            DataColumn(Text('Column 1'),
+                on_sort=lambda e: print(f"{e.column_index}, {e.ascending}")),
+            DataColumn(
+                Text('Column 2'),
+                tooltip='This is a second column',
+                numeric=True,
+                on_sort=lambda e: print(f"{e.column_index}, {e.ascending}")),
+        ],
+        rows= [
+            
+        ]
     )
