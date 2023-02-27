@@ -30,6 +30,19 @@ def main(page: Page):
                 on_sort=lambda e: print(f"{e.column_index}, {e.ascending}")),
         ],
         rows= [
-            
+            DataRow([
+                DataCell(Text('A')), DataCell(Text('1'))],
+                selected=True,
+                on_select_changed=lambda e: print(f"row select changed: {e.data}")
+            ),
+            DataRow([
+                DataCell(Text('B')), DataCell(Text('2'))
+            ]),
         ]
     )
+
+    page.add(dbl_demo)
+
+
+if __name__ == '__main__':
+    flt.app(target=main)
