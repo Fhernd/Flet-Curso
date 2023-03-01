@@ -15,20 +15,41 @@ def main(page: Page):
         group_alignment=-0.9,
         destinations=[
             NavigationRailDestination(
-                icons=icons.FAVORITE_BORDER,
+                icon=icons.FAVORITE_BORDER,
                 selected_icon=icons.FAVORITE,
                 label='First'
             ),
             NavigationRailDestination(
-                icons=icons.BOOKMARK_BORDER,
+                icon=icons.BOOKMARK_BORDER,
                 selected_icon=Icon(icons.BOOKMARK),
                 label='Second'
             ),
             NavigationRailDestination(
-                icons=icons.SETTINGS_OUTLINED,
+                icon=icons.SETTINGS_OUTLINED,
                 selected_icon=Icon(icons.BOOKMARK),
                 label='Settings'
             )
         ],
         on_change=lambda e: print("Selected destination:", e.control.selected_index)
     )
+
+    page.add(
+        Row(
+            [
+                rail,
+                VerticalDivider(width=1),
+                Column(
+                    [
+                        Text('¡Contenidooo!'),
+                    ],
+                    alignment='center',
+                    expand=True
+                )
+            ],
+            expand=True
+        )
+    )
+
+
+if __name__ == '__main__':
+    flt.app(target=main)
