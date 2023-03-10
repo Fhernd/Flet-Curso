@@ -28,4 +28,4 @@ def main(page: Page):
 
 
 if __name__ == '__main__':
-    flt.app(target=main, view=flt.WEB)
+    flt.app(target=main)
