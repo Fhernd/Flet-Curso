@@ -18,7 +18,7 @@ def main(page: Page):
                 shader=RadialGradient(
                     center=alignment.center,
                     radius=2.0,
-                    colors=[colors.WHITE, colors.RED],
+                    colors=[colors.WHITE, colors.GREEN],
                     tile_mode=GradientTileMode.CLAMP
                 )
             )
