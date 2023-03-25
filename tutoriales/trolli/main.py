@@ -1,8 +1,27 @@
 import flet
 from flet import (
+    colors,
+    icons,
+    margin,
+    AppBar,
+    Container,
+    Icon,
     Page,
-    colors
+    PopupMenuButton,
+    PopupMenuItem,
+    Text
 )
+
+
+class TrelloApp:
+    def __init__(self, page: Page) -> None:
+        self.page = page
+
+        self.appbar_items = [
+            PopupMenuItem(text='Login'),
+            PopupMenuItem(),
+            PopupMenuItem(text='Settings'),
+        ]
 
 
 if __name__ == '__main__':
