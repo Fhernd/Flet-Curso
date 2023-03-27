@@ -29,7 +29,7 @@ class AppLayout(Row):
 
         self.sidebar = Sidebar(self, page)
 
-        self.active_view: Control = Column(
+        self._active_view: Control = Column(
             controls=[
                 Text('Active View')
             ],
@@ -42,3 +42,17 @@ class AppLayout(Row):
             self.toggle_nav_rail_button,
             self.active_view
         ]
+
+    @property
+    def active_view(self):
+        return self._active_view
+    
+    @active_view.setter
+    def active_view(self, view):
+        self._active_view = view
+        self.update()
+    
+    def toggle_nav_rail(self, event):
+        self.sidebar.visible = not self.sidebar.visible
+        self.toggle_nav_rail_button.selected = not self.toggle_nav_rail_button.selected
+        self.page.update()
