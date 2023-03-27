@@ -78,3 +78,7 @@ class Sidebar(UserControl):
         )
 
         return self.view
+
+    def top_nav_change(self, event):
+        self.top_nav_rail.selected_index = event.control.selected_index
+        self.update()
