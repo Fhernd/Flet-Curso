@@ -9,12 +9,17 @@ from flet import (
     Page,
     PopupMenuButton,
     PopupMenuItem,
-    Text
+    Text,
+    UserControl,
 )
 
+from app_layout import AppLayout
 
-class TrelloApp:
+
+class TrelloApp(UserControl):
     def __init__(self, page: Page) -> None:
+        super().__init__()
+
         self.page = page
 
         self.appbar_items = [
@@ -42,6 +47,11 @@ class TrelloApp:
 
         self.page.appbar = self.appbar
         self.page.update()
+    
+    def build(self):
+        self.layout = AppLayout(self, self.page)
+
+        return self.layout
 
 
 if __name__ == '__main__':
@@ -51,8 +61,8 @@ if __name__ == '__main__':
         page.padding = 0
         page.bgcolor = colors.BLUE_GREY_200
 
-        # app = TrelloApp()
-        # page.add(app)
+        app = TrelloApp(page)
+        page.add(app)
 
         page.update()
 
