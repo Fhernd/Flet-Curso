@@ -11,7 +11,8 @@ from flet import (
     RoundedRectangleBorder,
     Row,
     Text,
-    TextButton
+    TextButton,
+    TextField
 )
 
 from sidebar import Sidebar
@@ -59,8 +60,26 @@ class AppLayout(Row):
                     )
                 )
             ],
-            padding=padding.only(top=15, right=50))
-        ])
+            padding=padding.only(top=15, right=50)),
+            Row([
+                TextField(
+                    hint_text='Search all boards',
+                    autofocus=False,
+                    content_padding=padding.only(left=10),
+                    width=200,
+                    height=40,
+                    text_size=12,
+                    border_color=colors.BLACK26,
+                    focused_border_color=colors.BLUE_ACCENT,
+                    suffix_icon=icons.SEARCH,
+                ),
+            ]),
+            Row([
+                Text('No boards to Display')
+            ])
+        ],
+        expand=True,
+        )
 
         self._active_view: Control = Column(
             controls=[
