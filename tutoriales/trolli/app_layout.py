@@ -2,13 +2,16 @@ from flet import (
     colors,
     icons,
     padding,
+    ButtonStyle,
     Column,
     Container,
     Control,
     IconButton,
     Page,
+    RoundedRectangleBorder,
     Row,
-    Text
+    Text,
+    TextButton
 )
 
 from sidebar import Sidebar
@@ -39,7 +42,24 @@ class AppLayout(Row):
                     expand=True,
                     padding=padding.only(top=15)
                 ),
-            ])
+                Container(
+                    TextButton(
+                        'Add new board',
+                        icon=icons.ADD,
+                        on_click=self.app.add_board,
+                        style=ButtonStyle(
+                            bgcolor={
+                                "": colors.BLUE_200,
+                                "hovered": colors.BLUE_400
+                            },
+                            shape={
+                                "": RoundedRectangleBorder(radius=3)
+                            }
+                        )
+                    )
+                )
+            ],
+            padding=padding.only(top=15, right=50))
         ])
 
         self._active_view: Control = Column(
