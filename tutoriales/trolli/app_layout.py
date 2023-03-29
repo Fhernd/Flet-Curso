@@ -1,6 +1,7 @@
 from flet import (
     colors,
     icons,
+    padding,
     Column,
     Container,
     Control,
@@ -28,6 +29,18 @@ class AppLayout(Row):
         )
 
         self.sidebar = Sidebar(self, page)
+
+        self.members_view = Text('Members View')
+
+        self.all_boards_view = Column([
+            Row([
+                Container(
+                    Text(value='Your Boards', style='headlineMedium'),
+                    expand=True,
+                    padding=padding.only(top=15)
+                ),
+            ])
+        ])
 
         self._active_view: Control = Column(
             controls=[
