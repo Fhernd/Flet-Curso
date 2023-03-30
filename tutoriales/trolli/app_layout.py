@@ -167,3 +167,18 @@ class AppLayout(Row):
     
     def board_click(self, event):
         self.sidebar.bottom_nav_change(self.store.get_boards().index(event.control.dadta))
+    
+    def page_resize(self, event=None):
+        """
+        This method is called when the page is resized.
+
+        :param event: The event that triggered the resize.
+        :type event: flet.events.ResizeEvent
+        """
+        if type(self.active_view) is Board:
+            self.active_view.resize(
+                self.sidebar.visible, self.page.width, self.page.height
+            )
+        
+        self.page.update()
+    
