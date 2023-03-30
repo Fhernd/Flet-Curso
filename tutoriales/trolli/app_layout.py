@@ -108,3 +108,18 @@ class AppLayout(Row):
         self.sidebar.visible = not self.sidebar.visible
         self.toggle_nav_rail_button.selected = not self.toggle_nav_rail_button.selected
         self.page.update()
+
+    def hydrate_all_boards_view(self):
+        self.all_boards_view.controls[-1] = Row([
+            Container(
+                content=Row([
+                    Container(
+                        content=Text(value=b.name),
+                        data=b,
+                        expand=True,
+                        on_click=self.board_click
+                    )
+                ]),
+            ),
+        ])
+        
