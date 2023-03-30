@@ -8,6 +8,7 @@ from flet import (
     Control,
     IconButton,
     Page,
+    PopupMenuItem,
     RoundedRectangleBorder,
     Row,
     Text,
@@ -118,6 +119,17 @@ class AppLayout(Row):
                         data=b,
                         expand=True,
                         on_click=self.board_click
+                    ),
+                    Container(
+                        content=PopupMenuItem(
+                            content=Text(
+                                value='Delete',
+                                style='labelMedium',
+                                text_align='center'
+                            ),
+                            on_click=self.delete_board,
+                            data=b
+                        )
                     )
                 ]),
             ),
