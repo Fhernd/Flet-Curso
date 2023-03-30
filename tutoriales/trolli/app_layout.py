@@ -164,3 +164,6 @@ class AppLayout(Row):
         )
 
         self.sidebar.sync_board_destinations()
+    
+    def board_click(self, event):
+        self.sidebar.bottom_nav_change(self.store.get_boards().index(event.control.dadta))
