@@ -1,4 +1,6 @@
 from flet import (
+    border,
+    border_radius,
     colors,
     icons,
     padding,
@@ -8,6 +10,7 @@ from flet import (
     Control,
     IconButton,
     Page,
+    PopupMenuButton,
     PopupMenuItem,
     RoundedRectangleBorder,
     Row,
@@ -121,17 +124,43 @@ class AppLayout(Row):
                         on_click=self.board_click
                     ),
                     Container(
-                        content=PopupMenuItem(
-                            content=Text(
-                                value='Delete',
-                                style='labelMedium',
-                                text_align='center'
-                            ),
-                            on_click=self.delete_board,
-                            data=b
-                        )
-                    )
-                ]),
-            ),
-        ])
-        
+                        content=PopupMenuButton(
+                            items=[
+                                PopupMenuItem(
+                                    content=Text(
+                                        value='Delete',
+                                        style='labelMedium',
+                                        text_align='center'
+                                    ),
+                                    on_click=self.delete_board,
+                                    data=b
+                                ),
+                                PopupMenuItem(),
+                                PopupMenuItem(
+                                    content=Text(
+                                        value='Archive',
+                                        style='labelMedium',
+                                        text_align='center'
+                                    ),
+                                ),
+                            ]
+                        ),
+                        padding=padding.only(right=-10),
+                        border_radius=border_radius.all(3)
+                    ),
+                ],
+                alignment='spaceBetween',
+                ),
+                border=border.all(1, colors.BLACK38),
+                border_radius=border_radius.all(5),
+                bgcolor=colors.WHITE60,
+                padding=padding.all(10),
+                width=250,
+                data=b
+            )
+            for b in self.app.boards
+        ],
+        wrap=True
+        )
+
+        self.sidebar.sync_board_destinations()
