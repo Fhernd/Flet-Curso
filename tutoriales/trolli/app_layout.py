@@ -23,11 +23,15 @@ from sidebar import Sidebar
 
 
 class AppLayout(Row):
-    def __init__(self, app, page, *args, **kwargs):
+    def __init__(self, app, page, store: DataStore *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.app = app
         self.page = page
+
+        self.on_resize = self.page_resize
+        self.store: DataStore = store
+
         self.toggle_nav_rail_button = IconButton(
             icon=icons.ARROW_CIRCLE_LEFT,
             icon_color=colors.BLUE_GREY_400,
@@ -36,7 +40,7 @@ class AppLayout(Row):
             on_click=self.toggle_nav_rail
         )
 
-        self.sidebar = Sidebar(self, page)
+        self.sidebar = Sidebar(self, self.store, page)
 
         self.members_view = Text('Members View')
 
@@ -85,13 +89,7 @@ class AppLayout(Row):
         expand=True,
         )
 
-        self._active_view: Control = Column(
-            controls=[
-                Text('Active View')
-            ],
-            alignment='center',
-            horizontal_alignment='center',
-        )
+        self._active_view: Control = self.all_boards_view
 
         self.controls = [
             self.sidebar,
@@ -106,6 +104,8 @@ class AppLayout(Row):
     @active_view.setter
     def active_view(self, view):
         self._active_view = view
+        self.controls[-1] = self._active_view
+        self.sidebar.sync_board_destinations()
         self.update()
 
     def set_board_view(self, i):
