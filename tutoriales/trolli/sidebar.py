@@ -22,7 +22,9 @@ class Sidebar(UserControl):
     def __init__(self, app_layout, store: DataStore, page):
         super().__init__()
 
+        self.store = store
         self.app_layout = app_layout
+        self.nav_rail_visible = True
         self.page = page
 
         self.top_nav_items = [
@@ -67,7 +69,7 @@ class Sidebar(UserControl):
             content=Column([
                 Row([
                     Text('Workspace')
-                ]),
+                ], alignment='spaceBetween'),
                 Container(
                     bgcolor=colors.BLACK26,
                     border_radius=border_radius.all(30),
@@ -83,12 +85,15 @@ class Sidebar(UserControl):
                     alignment=alignment.center_right,
                     width=220
                 ),
+                self.bottom_nav_rail
             ],
             tight=True),
             padding=padding.all(15),
             margin=margin.all(0),
             width=250,
+            expand=True,
             bgcolor=colors.BLUE_GREY,
+            visible=self.nav_rail_visible
         )
 
         return self.view
