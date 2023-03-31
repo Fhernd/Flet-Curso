@@ -94,6 +94,9 @@ class Sidebar(UserControl):
         return self.view
 
     def sync_board_destinations(self):
+        """
+        Syncs the board destinations with the boards in the store.
+        """
         boards = self.store.get_boards()
         self.bottom_nav_rail.destinations = []
 
@@ -121,6 +124,14 @@ class Sidebar(UserControl):
             )
         
         self.view.update()
+    
+    def toggle_nav_rail(self):
+        """
+        Toggles the visibility of the sidebar.
+        """
+        self.view.visible = not self.view.visible
+        self.view.update()
+        self.page.update()
 
     def top_nav_change(self, event):
         self.top_nav_rail.selected_index = event.control.selected_index
