@@ -111,9 +111,13 @@ class AppLayout(Row):
     def toggle_nav_rail(self, event):
         self.sidebar.visible = not self.sidebar.visible
         self.toggle_nav_rail_button.selected = not self.toggle_nav_rail_button.selected
+        self.page_resize()
         self.page.update()
 
     def hydrate_all_boards_view(self):
+        """
+        Rehidrata la vista de todos los tableros.
+        """
         self.all_boards_view.controls[-1] = Row([
             Container(
                 content=Row([
@@ -166,6 +170,11 @@ class AppLayout(Row):
         self.sidebar.sync_board_destinations()
     
     def board_click(self, event):
+        """
+        Este método es llamado cuando se hace click en un tablero.
+
+        :param event: El evento que disparó el click.
+        """
         self.sidebar.bottom_nav_change(self.store.get_boards().index(event.control.dadta))
     
     def page_resize(self, event=None):
