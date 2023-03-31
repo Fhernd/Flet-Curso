@@ -140,6 +140,18 @@ class Sidebar(UserControl):
         event.control.read_only = False
         event.control.border = 'outline'
         event.control.update()
+    
+    def board_name_blur(self, event):
+        """
+        Sets the board name to read-only when the text field is blurred.
+        """
+        self.store.update_board(self.store.get_boards()[event.control.data], {'name': event.control.value})
+
+        self.app_layout.hydrate_all_boards_view()
+        
+        event.control.read_only = True
+        event.control.border = 'none'
+        self.page.update()
 
     def top_nav_change(self, event):
         self.top_nav_rail.selected_index = event.control.selected_index
