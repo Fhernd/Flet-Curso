@@ -7,6 +7,7 @@ from flet import (
     padding,
     Column,
     Container,
+    IconButton,
     NavigationRail,
     NavigationRailDestination,
     Row,
@@ -47,6 +48,18 @@ class Sidebar(UserControl):
             extended=True,
             expand=True
         )
+        
+        self.bottom_nav_rail = NavigationRail(
+            selected_index=None,
+            label_type='all',
+            on_change=self.bottom_nav_change,
+            destinations=self.top_nav_items,
+            bgcolor=colors.BLUE_GREY,
+            extended=True,
+            expand=True
+        )
+
+        self.toggle_nav_rail_button = IconButton(icons.ARROW_BACK)
 
     def build(self):
         self.view = Container (
