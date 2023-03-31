@@ -108,7 +108,22 @@ class AppLayout(Row):
         self._active_view = view
         self.update()
     
+    def set_members_view(self):
+        """
+        Establece la vista de miembros como la vista activa.
+        """
+        self.active_view = self.members_view
+        self.sidebar.top_nav_rail.selected_index = 1
+        self.sidebar.bottom_nav_rail.selected_index = None
+        self.sidebar.update()
+        self.page.update()
+    
     def toggle_nav_rail(self, event):
+        """
+        Este método es llamado cuando se hace click en el botón de toggle de la barra lateral.
+
+        :param event: El evento que disparó el click.
+        """
         self.sidebar.visible = not self.sidebar.visible
         self.toggle_nav_rail_button.selected = not self.toggle_nav_rail_button.selected
         self.page_resize()
