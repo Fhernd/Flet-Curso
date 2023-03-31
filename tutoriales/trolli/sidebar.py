@@ -154,5 +154,16 @@ class Sidebar(UserControl):
         self.page.update()
 
     def top_nav_change(self, event):
-        self.top_nav_rail.selected_index = event.control.selected_index
+        index = event if type(event) == int else event.control.selected_index
+
+        self.bottom_nav_rail.selected_index = None
+        self.top_nav_rail.selected_index = index
+
+        self.view.update()
+
+        if index == 0:
+            self.page.route = '/boards'
+        elif index == 1:
+            self.page.route = '/members'
+        
         self.update()
