@@ -132,6 +132,14 @@ class Sidebar(UserControl):
         self.view.visible = not self.view.visible
         self.view.update()
         self.page.update()
+    
+    def board_name_focus(self, event):
+        """
+        Sets the board name to editable when the text field is focused.
+        """
+        event.control.read_only = False
+        event.control.border = 'outline'
+        event.control.update()
 
     def top_nav_change(self, event):
         self.top_nav_rail.selected_index = event.control.selected_index
