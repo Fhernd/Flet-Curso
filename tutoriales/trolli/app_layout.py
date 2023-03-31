@@ -107,6 +107,20 @@ class AppLayout(Row):
     def active_view(self, view):
         self._active_view = view
         self.update()
+
+    def set_board_view(self, i):
+        """
+        Establece la vista de un tablero como la vista activa.
+
+        :param i: El índice del tablero a establecer como vista activa.
+        """
+        self.active_view = self.store.get_boards()[i]
+        self.sidebar.bottom_nav_rail.selected_index = i
+        self.sidebar.top_nav_rail.selected_index = None
+        
+        self.sidebar.update()
+        self.page.update()
+        self.page_resize()
     
     def set_all_boards_view(self):
         """
