@@ -144,5 +144,25 @@ class Board(UserControl):
             self.page.update()
             self.update()
         
+        def textfield_change(event):
+            if dialog_text.value == '':
+                create_button.disabled = True
+            else:
+                create_button.disabled = False
+            
+            self.page.update()
+
+        dialog_text = TextField(
+            lable='New List Name',
+            on_submit=close_dialog,
+            on_change=textfield_change,
+        )
+
+        create_button = ElevatedButton(
+            text='Create',
+            bgcolor=colors.BLUE_200,
+            on_click=close_dialog,
+            disabled=True,
+        )
         
-    
+            
