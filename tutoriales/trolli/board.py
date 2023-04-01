@@ -222,4 +222,23 @@ class Board(UserControl):
         """
         self.board_lists.insert(-1, list)
         self.store.add_list(self.board_id, list)
-    
+
+    def color_option_creator(self, color: str):
+        """
+        Creates a color option for the new list dialog.
+
+        Args:
+            color (str): The color of the option.
+
+        Returns:
+            Container: The color option.
+        """
+        return Container(
+            bgcolor=color,
+            border_radius=border_radius.all(50),
+            height=10,
+            width=10,
+            padding=padding.all(5),
+            alignment='center',
+            data=color,
+        )
