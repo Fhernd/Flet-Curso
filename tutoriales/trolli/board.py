@@ -56,3 +56,24 @@ class Board(UserControl):
             height=(self.app.page.height - 95),
         )
     
+    def build(self):
+        """
+        Build the view for this board.
+        """
+        self.view = Container(
+            content=Column(
+                controls=[
+                    self.list
+                ],
+                scroll='auto',
+                expand=True,
+            ),
+            data=self,
+            margin=margin.all(0),
+            padding=padding.only(top=10, right=0),
+            height=self.app.page.height,
+        )
+
+        return self.view
+        
+    
