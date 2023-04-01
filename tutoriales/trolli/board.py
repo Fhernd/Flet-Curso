@@ -213,5 +213,13 @@ class Board(UserControl):
         self.board_lists.remove(list)
         self.store.remove_list(self.board_id. list.board_list_id)
     
-    
+    def add_list(self, list: BoardList):
+        """
+        Adds a list to this board.
+
+        Args:
+            list (BoardList): The list to add.
+        """
+        self.board_lists.insert(-1, list)
+        self.store.add_list(self.board_id, list)
     
