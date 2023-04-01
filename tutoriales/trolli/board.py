@@ -201,4 +201,17 @@ class Board(UserControl):
         self.page.dialog = dialog
         self.page.update()
         dialog_text.focus()
-            
+    
+    def remove_list(self, list: BoardList, event):
+        """
+        Removes a list from this board.
+
+        Args:
+            list (BoardList): The list to remove.
+            event: The event that triggered this function.
+        """
+        self.board_lists.remove(list)
+        self.store.remove_list(self.board_id. list.board_list_id)
+    
+    
+    
