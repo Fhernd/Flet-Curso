@@ -12,6 +12,7 @@ from flet import (
     Container,
     ElevatedButton,
     FloatingActionButton,
+    GridView,
     Row,
     Text,
     TextField,
@@ -117,4 +118,31 @@ class Board(UserControl):
                     v.border = None
             
             dialog.content.update()
+        
+        color_options = GridView(
+            runs_count=3,
+            max_extent=40,
+            data="",
+            height=150,
+        )
+
+        for v in option_dict.values():
+            v.on_click = set_color
+            color_options.controls.append(v)
+        
+        def close_dialog(event):
+            if (hasattr(event.control, 'text') and not event.control.text == 'Cancel') or (type(event.control) is TextField and event.control.value != ''):
+                new_list = BoardList(
+                    self,
+                    self.store,
+                    dialog_text.value,
+                    color=color_options.data,
+                )
+                self.add_list(new_list)
+            
+            dialog.open = False
+            self.page.update()
+            self.update()
+        
+        
     
