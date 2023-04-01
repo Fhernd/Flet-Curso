@@ -109,6 +109,9 @@ class Board(UserControl):
         }
 
         def set_color(event):
+            """
+            Sets the color of the new list.
+            """
             color_options.data = event.control.data
 
             for k, v in option_dict.items():
@@ -131,6 +134,9 @@ class Board(UserControl):
             color_options.controls.append(v)
         
         def close_dialog(event):
+            """
+            Closes the dialog and creates the new list.
+            """
             if (hasattr(event.control, 'text') and not event.control.text == 'Cancel') or (type(event.control) is TextField and event.control.value != ''):
                 new_list = BoardList(
                     self,
@@ -145,6 +151,9 @@ class Board(UserControl):
             self.update()
         
         def textfield_change(event):
+            """
+            Enables the create button when the textfield is not empty.
+            """
             if dialog_text.value == '':
                 create_button.disabled = True
             else:
@@ -165,4 +174,31 @@ class Board(UserControl):
             disabled=True,
         )
         
+        dialog = AlertDialog(
+            title=Text('Name your new list'),
+            content=Column([
+                Container(
+                    content=dialog_text,
+                    padding=padding.symmetric(horizontal=5)
+                ),
+                color_options,
+                Row([
+                    ElevatedButton(
+                        text='Cancel',
+                        on_click=close_dialog,
+                    ),
+                    create_button,
+                ],
+                alignment='spaceBetween'
+                ),
+            ],
+            tight=True,
+            alignment='center',
+            ),
+            on_dismiss=lambda e: print("Modal dialog dismissed!"),
+        )
+
+        self.page.dialog = dialog
+        self.page.update()
+        dialog_text.focus()
             
