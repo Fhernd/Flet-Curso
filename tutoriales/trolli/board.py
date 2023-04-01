@@ -39,4 +39,20 @@ class Board(UserControl):
             height=30,
             on_click=self.create_list
         )
+
+        self.board_lists = [
+            self.add_list_button
+        ]
         
+        for l in self.store.get_lists_by_board(self.board_id):
+            self.add_list(l)
+        
+        self.list_wrap = Row(
+            self.board_lists,
+            vertical_alignment='start',
+            visible=True,
+            scroll='auto',
+            width=(self.app.page.width  - 310),
+            height=(self.app.page.height - 95),
+        )
+    
