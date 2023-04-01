@@ -85,3 +85,36 @@ class Board(UserControl):
         self.list_wrap.update()
         self.view.update()
     
+    def create_list(self, event):
+        """
+        Creates a new list for this board.
+        """
+        option_dict = {
+            colors.LIGHT_GREEN: self.color_option_creator(colors.LIGHT_GREEN),
+            colors.RED_200: self.color_option_creator(colors.RED_200),
+            colors.AMBER_500: self.color_option_creator(colors.AMBER_500),
+            colors.PINK_300: self.color_option_creator(colors.PINK_300),
+            colors.ORANGE_300: self.color_option_creator(colors.ORANGE_300),
+            colors.LIGHT_BLUE: self.color_option_creator(colors.LIGHT_BLUE),
+            colors.DEEP_ORANGE_300: self.color_option_creator(colors.DEEP_ORANGE_300),
+            colors.PURPLE_100: self.color_option_creator(colors.PURPLE_100),
+            colors.RED_700: self.color_option_creator(colors.RED_700),
+            colors.TEAL_500: self.color_option_creator(colors.TEAL_500),
+            colors.YELLOW_400: self.color_option_creator(colors.YELLOW_400),
+            colors.PURPLE_400: self.color_option_creator(colors.PURPLE_400),
+            colors.BROWN_300: self.color_option_creator(colors.BROWN_300),
+            colors.CYAN_500: self.color_option_creator(colors.CYAN_500),
+            colors.BLUE_GREY_500: self.color_option_creator(colors.BLUE_GREY_500),
+        }
+
+        def set_color(event):
+            color_options.data = event.control.data
+
+            for k, v in option_dict.items():
+                if k == event.control.data:
+                    v.border = border.all(3, colors.BLACK26)
+                else:
+                    v.border = None
+            
+            dialog.content.update()
+    
