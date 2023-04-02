@@ -77,3 +77,46 @@ class BoardList(UserControl):
                 on_click=self.save_title
             )
         ])
+
+        self.header = Row(
+            controls=[
+                Text(
+                    value=self.title,
+                    style='titleMedium',
+                    text_align='left',
+                    overflow='clip',
+                    expand=True,
+                ),
+                Container(
+                    PopupMenuButton(
+                        items=[
+                            PopupMenuItem(
+                                content=Text('Edit'),
+                                style='labelMedium',
+                                text_align='center',
+                                color=self.color,
+                                on_click=self.edit_title
+                            ),
+                            PopupMenuItem(),
+                            PopupMenuItem(
+                                content=Text('Delete'),
+                                style='labelMedium',
+                                text_align='center',
+                                color=self.color,
+                                on_click=self.delete_list
+                            ),
+                            PopupMenuItem(),
+                            PopupMenuItem(
+                                content=Text('Move List'),
+                                style='labelMedium',
+                                text_align='center',
+                                color=self.color,
+                            ),
+                        ],
+                    ),
+                    padding=padding.only(right=-10),
+                ),
+            ],
+            alignment='spaceBetween',
+        )
+        
