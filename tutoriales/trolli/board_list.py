@@ -50,6 +50,9 @@ class BoardList(UserControl):
         self.items.controls = self.store.get_items(self.board_list_id)
 
     def build(self):
+        """
+        Builds the board list.
+        """
         self.new_item_field = TextField(
             label='new card name',
             height=50,
@@ -151,4 +154,20 @@ class BoardList(UserControl):
             ),
         )
 
-        
+        self.view = DragTarget(
+            group='items',
+            content=Draggable(
+                group='items',
+                content=DragTarget(
+                    group='lists',
+                    content=self.inner_list,
+                    data=self,
+                    on_accept=self.item_drag_accept,
+                    on_will_accept=self.item_will_drag_accept,
+                    on_leave=self.item_drag_leave,
+                )
+            )
+        )
+
+        return self.view
+    
