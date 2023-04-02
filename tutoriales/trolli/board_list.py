@@ -119,4 +119,36 @@ class BoardList(UserControl):
             ],
             alignment='spaceBetween',
         )
+
+        self.inner_list = Container(
+            content=Column([
+                self.header,
+                self.new_item_field,
+                TextButton(
+                    content=Row([
+                        Icon(icons.ADD),
+                        Text('add card', color=colors.BLACK38)
+                    ],
+                    right=True),
+                    on_click=self.add_item_handler,
+                ),
+                self.items,
+                self.end_indicator
+            ],
+            spacing=4,
+            tight=True,
+            data=self.title,
+            ),
+            width=250,
+            border=border.all(2, color=colors.BLACK12),
+            border_radius=border_radius.all(5),
+            bgcolor= self.color if len(self.color) else colors.WHITE,
+            padding=padding.only(
+                bottom=10,
+                left=10,
+                right=10,
+                top=5
+            ),
+        )
+
         
