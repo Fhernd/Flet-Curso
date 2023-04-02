@@ -17,6 +17,7 @@ from flet import (
     Icon,
     PopupMenuButton,
     PopupMenuItem,
+    Row,
     Text,
     TextButton,
     TextField,
@@ -47,3 +48,32 @@ class BoardList(UserControl):
         self.color = color
         self.items = Column([], tight=True, spacing=4)
         self.items.controls = self.store.get_items(self.board_list_id)
+
+    def build(self):
+        self.new_item_field = TextField(
+            label='new card name',
+            height=50,
+            bgcolor=colors.WHITE,
+            on_submit=self.add_item_handler
+        )
+
+        self.end_indicator = Container(
+            bgcolor=colors.BLACK26,
+            border_radius=border_radius.all(30),
+            height=3,
+            width=200,
+            opacity=0.0
+        )
+
+        self.edit_field = Row([
+            TextField(
+                value=self.title,
+                width=150,
+                height=40,
+                content_padding=padding.only(left=10, bottom=10),
+            ),
+            TextButton(
+                text='Save',
+                on_click=self.save_title
+            )
+        ])
