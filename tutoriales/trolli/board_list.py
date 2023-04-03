@@ -275,3 +275,14 @@ class BoardList(UserControl):
         self.header.controls[1].visible = True
         self.update()
     
+    def add_item_handler(self, event):
+        """
+        Handles the add item event.
+
+        :param event: The event.
+        """
+        if self.new_item_field.value == '':
+            return
+
+        self.add_item()
+    
