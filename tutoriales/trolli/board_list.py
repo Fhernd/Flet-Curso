@@ -240,3 +240,12 @@ class BoardList(UserControl):
         self.inner_list.border = border.all(2, colors.BLACK12)
         self.update()
     
+    def delete_list(self, event):
+        """
+        Deletes the list.
+
+        :param event: The event.
+        """
+        self.board.remove_list(self, event)
+    
+    
