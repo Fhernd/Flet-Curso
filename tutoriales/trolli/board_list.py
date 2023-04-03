@@ -248,4 +248,14 @@ class BoardList(UserControl):
         """
         self.board.remove_list(self, event)
     
+    def edit_title(self, event):
+        """
+        Edits the title of the list.
+
+        :param event: The event.
+        """
+        self.header.controls[0] = self.edit_field
+        self.header.controls[1].visible = False
+        self.update()
+    
     
