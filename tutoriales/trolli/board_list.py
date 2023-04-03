@@ -322,4 +322,17 @@ class BoardList(UserControl):
         self.view.update()
         self.page.update()
     
+    def remove_item(self, item: Item):
+        """
+        Removes an item from the list.
+
+        :param item: The item to remove.
+        """
+        control_list = [x.controls[1] for x in self.items.controls]
+
+        del self.items.controls[control_list.index(item)]
+        self.store.remove_item(self.board_list_id, item)
+
+        self.view.update()
+    
         
