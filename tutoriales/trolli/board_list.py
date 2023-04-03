@@ -182,4 +182,15 @@ class BoardList(UserControl):
         src.data.list.remove_item(src.data)
         self.end_indicator.opacity = 0.0
         self.update()
+    
+    def item_will_drag_accept(self, event):
+        """
+        Handles the drag will accept event of the list.
+
+        :param event: The event.
+        """
+        if event.data == 'true':
+            self.end_indicator.opacity = 1.0
         
+        self.update()
+    
