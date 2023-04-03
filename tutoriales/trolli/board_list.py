@@ -219,3 +219,16 @@ class BoardList(UserControl):
 
         self.inner_list.border = border.all(2, colors.BLACK12)
         self.update()
+
+    def list_will_drag_accept(self, event):
+        """
+        Handles the drag will accept event of the list.
+
+        :param event: The event.
+        """
+        if event.data == 'true':
+            self.inner_list.border = border.all(2, colors.BLACK38)
+        
+        self.update()
+    
+    
