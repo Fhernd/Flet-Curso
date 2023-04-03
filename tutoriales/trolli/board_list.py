@@ -171,3 +171,15 @@ class BoardList(UserControl):
 
         return self.view
     
+    def item_drag_accept(self, event):
+        """
+        Handles the drag accept event of the list.
+
+        :param event: The event.
+        """
+        src = self.page.get_control(event.src_id)
+        self.add_item(src.data.item_text)
+        src.data.list.remove_item(src.data)
+        self.end_indicator.opacity = 0.0
+        self.update()
+        
