@@ -227,8 +227,16 @@ class BoardList(UserControl):
         :param event: The event.
         """
         if event.data == 'true':
-            self.inner_list.border = border.all(2, colors.BLACK38)
+            self.inner_list.border = border.all(2, colors.BLACK)
         
         self.update()
     
+    def list_drag_leave(self, event):
+        """
+        Handles the drag leave event of the list.
+
+        :param event: The event.
+        """
+        self.inner_list.border = border.all(2, colors.BLACK12)
+        self.update()
     
