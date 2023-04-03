@@ -286,3 +286,40 @@ class BoardList(UserControl):
 
         self.add_item()
     
+    def add_item(self, item: str = None, chosen_control: Draggable = None, swap_control: Draggable = None):
+        """
+        Adds an item to the list.
+
+        :param item: The item to add.
+        """
+        control_list = [x.controls[1] for x in self.items.controls]
+
+        to_index = control_list.index(swap_control) if swap_control else None
+        from_index = control_list.index(chosen_control) if chosen_control else None
+
+        control_to_add = Column([
+            Container(
+                bgcolor=colors.BLACK26,
+                border_radius=border_radius.all(30),
+                height=3,
+                alignment=alignment.centerRight,
+                width=200,
+                opacity=0.0,
+            )
+        ])
+
+        if ((from_index is not None)) and (to_index is not None):
+            self.items.controls.insert(to_index, self.items.controls.pop(from_index))
+        elif to_index is not None:
+            new_item = Item(self, self.store, item)
+            control_to_add.controls.append(new_item)
+            self.items.controls.insert(to_index, control_to_add)
+        else:
+            new_item = Item(self, self.store, item) if item else Item(self, self.store, self.new_item_field.value)
+            self.store.add_item(self.board_list_id, new_item)
+            self.new_item_field.value = ''
+        
+        self.view.update()
+        self.page.update()
+    
+        
