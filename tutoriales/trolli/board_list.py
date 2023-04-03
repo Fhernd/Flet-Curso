@@ -335,4 +335,13 @@ class BoardList(UserControl):
 
         self.view.update()
     
-        
+    def set_indicator_opacity(self, item, opacity: float):
+        """
+        Sets the opacity of the end indicator.
+
+        :param opacity: The opacity to set.
+        """
+        control_list = [x.controls[1] for x in self.items.controls]
+        self.items.controls[control_list.index(item)].controls[0].opacity = opacity
+
+        self.view.update()
