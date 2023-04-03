@@ -258,4 +258,20 @@ class BoardList(UserControl):
         self.header.controls[1].visible = False
         self.update()
     
+    def save_title(self, event):
+        """
+        Saves the title of the list.
+
+        :param event: The event.
+        """
+        self.title = self.edit_field.controls[0].value
+        self.header.controls[0] = Text(
+            value=self.title,
+            style='titleMedium',
+            text_align='left',
+            overflow='clip',
+            expand=True,
+        )
+        self.header.controls[1].visible = True
+        self.update()
     
