@@ -194,3 +194,12 @@ class BoardList(UserControl):
         
         self.update()
     
+    def item_drag_leave(self, event):
+        """
+        Handles the drag leave event of the list.
+
+        :param event: The event.
+        """
+        self.end_indicator.opacity = 0.0
+        self.update()
+    
