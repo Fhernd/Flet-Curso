@@ -203,3 +203,19 @@ class BoardList(UserControl):
         self.end_indicator.opacity = 0.0
         self.update()
     
+    def list_drag_accept(self, event):
+        """
+        Handles the drag accept event of the list.
+
+        :param event: The event.
+        """
+        src = self.page.get_control(event.src_id)
+        lists = self.board.board_lists
+        
+        to_index = lists.index(event.control.data)
+        from_index = lists.index(src.content.data)
+
+        lists[to_index], lists[from_index] = lists[from_index], lists[to_index]
+
+        self.inner_list.border = border.all(2, colors.BLACK12)
+        self.update()
