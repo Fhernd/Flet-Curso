@@ -145,3 +145,11 @@ class DataStore:
         """
         raise NotImplementedError
     
+    def get_item(self, id) -> "Item":
+        """
+        Get an item from the data store.
+
+        :param id: The id of the item to get.
+        :return: The item.
+        """
+        raise NotImplementedError
