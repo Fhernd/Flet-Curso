@@ -117,4 +117,13 @@ class DataStore:
         :return: The lists.
         """
         raise NotImplementedError
+
+    def remove_list(self, board, id) -> None:
+        """
+        Remove a list from the data store.
+
+        :param board: The board to remove the list from.
+        :param id: The list model to remove.
+        """
+        raise NotImplementedError
     
