@@ -50,3 +50,10 @@ class DataStore:
         """
         raise NotImplementedError
     
+    def add_user(self, model) -> None:
+        """
+        Add a new user to the data store.
+
+        :param model: The user model to add.
+        """
+        raise NotImplementedError
