@@ -99,4 +99,13 @@ class DataStore:
         :return: The lists.
         """
         raise NotImplementedError
+
+    def get_list(self, id: int) -> "BoardList":
+        """
+        Get a list from the data store.
+
+        :param id: The id of the list to get.
+        :return: The list.
+        """
+        raise NotImplementedError
     
