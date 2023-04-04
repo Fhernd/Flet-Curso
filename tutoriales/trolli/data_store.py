@@ -83,3 +83,12 @@ class DataStore:
         """
         raise NotImplementedError
     
+    def add_list(self, board, model) -> None:
+        """
+        Add a new list to the data store.
+
+        :param board: The board to add the list to.
+        :param model: The list model to add.
+        """
+        raise NotImplementedError
+    
