@@ -33,3 +33,12 @@ class DataStore:
         """
         raise NotImplementedError
     
+    def update_board(self, model, update):
+        """
+        Update a board in the data store.
+
+        :param model: The board model to update.
+        :param update: The update to apply to the board.
+        """
+        raise NotImplementedError
+    
