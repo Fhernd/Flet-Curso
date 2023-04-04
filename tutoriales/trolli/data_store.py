@@ -65,3 +65,13 @@ class DataStore:
         :return: The users.
         """
         raise NotImplementedError
+
+    def get_user(self, id: int) -> "User":
+        """
+        Get a user from the data store.
+
+        :param id: The id of the user to get.
+        :return: The user.
+        """
+        raise NotImplementedError
+    
