@@ -57,3 +57,11 @@ class DataStore:
         :param model: The user model to add.
         """
         raise NotImplementedError
+
+    def get_users(self) -> list["User"]:
+        """
+        Get all users from the data store.
+
+        :return: The users.
+        """
+        raise NotImplementedError
