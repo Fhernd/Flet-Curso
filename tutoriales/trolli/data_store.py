@@ -91,4 +91,12 @@ class DataStore:
         :param model: The list model to add.
         """
         raise NotImplementedError
+
+    def get_lists(self) -> list["BoardList"]:
+        """
+        Get all lists from the data store.
+
+        :return: The lists.
+        """
+        raise NotImplementedError
     
