@@ -45,3 +45,19 @@ class Item(UserControl):
             elevation=1,
             data=self.list
         )
+
+    def build(self):
+        
+        self.view = Draggable(
+            content=DragTarget(
+                group='items',
+                content=self.card_item,
+                on_accept=self.drag_accept,
+                on_leave=self.drag_leave,
+                on_will_accept=self.drag_will_accept,
+            ),
+            data=self
+        )
+
+        return self.view
+    
