@@ -163,3 +163,11 @@ class DataStore:
         """
         raise NotImplementedError
     
+    def remove_item(self, board_list, id) -> None:
+        """
+        Remove an item from the data store.
+
+        :param board_list: The list to remove the item from.
+        :param id: The item model to remove.
+        """
+        raise NotImplementedError
