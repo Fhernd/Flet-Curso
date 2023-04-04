@@ -6,3 +6,12 @@ if TYPE_CHECKING:
     from item import Item
 
 
+class DataStore:
+
+    def add_board(self, model) -> None:
+        """
+        Add a new board to the data store.
+
+        :param model: The board model to add.
+        """
+        raise NotImplementedError
