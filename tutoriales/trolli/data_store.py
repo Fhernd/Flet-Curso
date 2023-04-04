@@ -153,3 +153,13 @@ class DataStore:
         :return: The item.
         """
         raise NotImplementedError
+
+    def get_items_by_board(self, board) -> list["Item"]:
+        """
+        Get all items for a board from the data store.
+
+        :param board: The board to get the items for.
+        :return: The items.
+        """
+        raise NotImplementedError
+    
