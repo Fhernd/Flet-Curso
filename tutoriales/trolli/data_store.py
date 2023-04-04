@@ -42,3 +42,11 @@ class DataStore:
         """
         raise NotImplementedError
     
+    def remove_board(self, board) -> None:
+        """
+        Remove a board from the data store.
+
+        :param board: The board model to remove.
+        """
+        raise NotImplementedError
+    
