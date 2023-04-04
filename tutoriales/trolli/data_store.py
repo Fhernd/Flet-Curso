@@ -135,3 +135,13 @@ class DataStore:
         :param model: The item model to add.
         """
         raise NotImplementedError
+
+    def get_items(self, board_list) -> list["Item"]:
+        """
+        Get all items from the data store.
+
+        :param board_list: The list to get the items for.
+        :return: The items.
+        """
+        raise NotImplementedError
+    
