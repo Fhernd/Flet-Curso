@@ -109,3 +109,12 @@ class DataStore:
         """
         raise NotImplementedError
     
+    def get_lists_by_board(self, board) -> list["BoardList"]:
+        """
+        Get all lists for a board from the data store.
+
+        :param board: The board to get the lists for.
+        :return: The lists.
+        """
+        raise NotImplementedError
+    
