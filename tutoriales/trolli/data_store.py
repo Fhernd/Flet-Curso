@@ -74,4 +74,12 @@ class DataStore:
         :return: The user.
         """
         raise NotImplementedError
+
+    def remove_user(self, id) -> None:
+        """
+        Remove a user from the data store.
+
+        :param id: The user model to remove.
+        """
+        raise NotImplementedError
     
