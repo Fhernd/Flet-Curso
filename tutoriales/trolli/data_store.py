@@ -25,3 +25,11 @@ class DataStore:
         """
         raise NotImplementedError
     
+    def get_boards(self) -> list["Board"]:
+        """
+        Get all boards from the data store.
+
+        :return: The boards.
+        """
+        raise NotImplementedError
+    
