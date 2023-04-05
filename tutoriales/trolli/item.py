@@ -84,3 +84,18 @@ class Item(UserControl):
         self.list.set_indicator_opacity(self, 0.0)
         self.card_item.elevation = 1
         event.control.update()
+    
+    def drag_will_accept(self, event):
+        """
+        Called when the item is dragged over a list.
+
+        If the item is dragged over the same list, then the indicator is hidden.
+
+        param event: The event object.
+        """
+        if event.data == 'true':
+            self.list.set_indicator_opacity(self, 1.0)
+        
+        self.card_item.elevation = 20 if event.data == 'true' else 1
+
+        event.control.update()
