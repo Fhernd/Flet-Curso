@@ -60,4 +60,27 @@ class Item(UserControl):
         )
 
         return self.view
+
+    def drag_accept(self, event):
+        """
+        Called when the item is dropped on a list.
+        """
+        src = self.page.get_control(event.src_id)
+
+        if src.content.content == event.control.content:
+            self.card_item.elevation = 1
+            self.list.set_indicator_opacity(self, 0.0)
+            event.control.update()
+            return
+
+        if src.data.list == self.list:
+            self.list.add_item(chosen_control=src.data, swap_control=self)
+            self.card_item.elevation = 1
+            event.control.update()
+            return
     
+        self.list.add_item(src.data.item_text, swap_control=self)
+        src.data.list.remove_item(src.data)
+        self.list.set_indicator_opacity(self, 0.0)
+        self.card_item.elevation = 1
+        event.control.update()
