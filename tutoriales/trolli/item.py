@@ -99,3 +99,14 @@ class Item(UserControl):
         self.card_item.elevation = 20 if event.data == 'true' else 1
 
         event.control.update()
+    
+    def drag_leave(self, event):
+        """
+        Called when the item is dragged away from a list.
+
+        param event: The event object.
+        """
+        self.list.set_indicator_opacity(self, 0.0)
+        self.card_item.elevation = 1
+        
+        event.control.update()
