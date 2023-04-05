@@ -31,3 +31,11 @@ class InMemoryStore(DataStore):
         """
         self.boards[board.board_id] = board
     
+    def get_board(self, id: int) -> 'Board':
+        """
+        Get a board from the data store.
+
+        :param id: The id of the board to get.
+        :return: The board.
+        """
+        return self.boards[id]
