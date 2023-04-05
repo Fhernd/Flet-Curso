@@ -23,3 +23,11 @@ class InMemoryStore(DataStore):
         self.board_lists: dict[int, list['BoardList']] = {}
         self.items: dict[int, list['Item']] = {}
     
+    def add_board(self, board: 'Board') -> None:
+        """
+        Add a new board to the data store.
+
+        :param model: The board model to add.
+        """
+        self.boards[board.board_id] = board
+    
