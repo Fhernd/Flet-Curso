@@ -50,4 +50,11 @@ class InMemoryStore(DataStore):
         for k in update:
             setattr(board, k, update[k])
     
+    def get_boards(self) -> list['Board']:
+        """
+        Get all boards from the data store.
+
+        :return: The boards.
+        """
+        return [self.boards[id] for id in self.boards]
     
