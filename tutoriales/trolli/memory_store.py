@@ -39,3 +39,15 @@ class InMemoryStore(DataStore):
         :return: The board.
         """
         return self.boards[id]
+
+    def update_board(self, board: 'Board', update: dict):
+        """
+        Update a board in the data store.
+
+        :param model: The board model to update.
+        :param update: The update to apply to the board.
+        """
+        for k in update:
+            setattr(board, k, update[k])
+    
+    
