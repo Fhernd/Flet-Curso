@@ -114,3 +114,15 @@ class InMemoryStore(DataStore):
         """
         return [self.users[name] for name in self.users]
     
+    def add_item(self, board_list: int, item: 'Item') -> None:
+        """
+        Add a new item to the data store.
+
+        :param board_list: The list to add the item to.
+        :param item: The item model to add.
+        """
+        if board_list in self.items:
+            self.items[board_list].append(item)
+        else:
+            self.items[board_list] = [item]
+    
