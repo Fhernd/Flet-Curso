@@ -66,3 +66,16 @@ class InMemoryStore(DataStore):
         """
         del self.boards[board.board_id]
         self.board_lists[board.id] = []
+    
+    def add_list(self, board: int, list: 'BoardList'):
+        """
+        Add a new list to the data store.
+
+        :param board: The board to add the list to.
+        :param list: The list model to add.
+        """
+        if board in self.board_lists:
+            self.board_lists[board].append(list)
+        else:
+            self.board_lists[board] = [list]
+    
