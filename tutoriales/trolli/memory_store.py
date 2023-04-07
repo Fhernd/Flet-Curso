@@ -105,4 +105,12 @@ class InMemoryStore(DataStore):
         :param user: The user model to add.
         """
         self.users[user.name] = user
+
+    def get_users(self) -> list["User"]:
+        """
+        Get all users from the data store.
+
+        :return: The users.
+        """
+        return [self.users[name] for name in self.users]
     
