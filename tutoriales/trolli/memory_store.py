@@ -98,4 +98,11 @@ class InMemoryStore(DataStore):
         """
         self.board_lists[board] = [l for l in self.board_lists[board] if l.id == id]
     
+    def add_user(self, user: 'User'):
+        """
+        Add a new user to the data store.
+
+        :param user: The user model to add.
+        """
+        self.users[user.name] = user
     
