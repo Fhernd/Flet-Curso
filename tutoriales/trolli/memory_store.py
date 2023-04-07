@@ -89,3 +89,13 @@ class InMemoryStore(DataStore):
         """
         return self.board_lists.get(board, [])
     
+    def remove_list(self, board: int, id: int):
+        """
+        Remove a list from the data store.
+
+        :param board: The board to remove the list from.
+        :param id: The id of the list to remove.
+        """
+        self.board_lists[board] = [l for l in self.board_lists[board] if l.id == id]
+    
+    
