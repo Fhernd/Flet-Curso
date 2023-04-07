@@ -79,3 +79,13 @@ class InMemoryStore(DataStore):
         else:
             self.board_lists[board] = [list]
     
+    def get_lists_by_board(self, board) -> list["BoardList"]:
+        """
+        Get all lists for a board from the data store.
+
+        :param board: The board to get the lists for.
+
+        :return: The lists.
+        """
+        return self.board_lists.get(board, [])
+    
