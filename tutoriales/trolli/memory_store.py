@@ -126,3 +126,13 @@ class InMemoryStore(DataStore):
         else:
             self.items[board_list] = [item]
     
+    def get_items(self, board_list: int) -> list["Item"]:
+        """
+        Get all items for a list from the data store.
+
+        :param board_list: The list to get the items for.
+
+        :return: The items.
+        """
+        return self.items.get(board_list, [])
+    
