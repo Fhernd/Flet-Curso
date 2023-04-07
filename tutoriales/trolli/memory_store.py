@@ -57,4 +57,12 @@ class InMemoryStore(DataStore):
         :return: The boards.
         """
         return [self.boards[id] for id in self.boards]
-    
+
+    def remove_board(self, board: 'Board') -> None:
+        """
+        Remove a board from the data store.
+
+        :param board: The board model to remove.
+        """
+        del self.boards[board.board_id]
+        self.board_lists[board.id] = []
