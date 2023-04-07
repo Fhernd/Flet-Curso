@@ -136,3 +136,11 @@ class InMemoryStore(DataStore):
         """
         return self.items.get(board_list, [])
     
+    def remove_item(self, board_list: int, id: int) -> None:
+        """
+        Remove an item from the data store.
+
+        :param board_list: The list to remove the item from.
+        :param id: The id of the item to remove.
+        """
+        self.items[board_list] = [i for i in self.items[board_list] if i.id == id]
