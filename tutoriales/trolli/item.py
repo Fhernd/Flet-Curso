@@ -19,9 +19,19 @@ from data_store import DataStore
 
 
 class Item(UserControl):
+    """
+    An item.
+    """
     id_counter = itertools.count()
 
     def __init__(self, list: 'BoardList', store: DataStore, item_text: str):
+        """
+        Create a new item.
+
+        :param list: The list that contains this item.
+        :param store: The data store.
+        :param item_text: The text of the item.
+        """
         super().__init__()
 
         self.item_id = next(Item.id_counter)
@@ -47,7 +57,11 @@ class Item(UserControl):
         )
 
     def build(self):
-        
+        """
+        Build the view.
+
+        :return: The view.
+        """
         self.view = Draggable(
             content=DragTarget(
                 group='items',
@@ -64,6 +78,10 @@ class Item(UserControl):
     def drag_accept(self, event):
         """
         Called when the item is dropped on a list.
+
+        If the item is dropped on the same list, then the indicator is hidden.
+
+        param event: The event object.
         """
         src = self.page.get_control(event.src_id)
 
