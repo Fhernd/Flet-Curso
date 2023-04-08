@@ -16,10 +16,19 @@ from flet import (
     UserControl
 )
 
+from data_store import DataStore
+
 
 class Sidebar(UserControl):
 
     def __init__(self, app_layout, store: DataStore, page):
+        """
+        Create a new sidebar.
+
+        :param app_layout: The app layout that contains the sidebar.
+        :param store: The data store.
+        :param page: The page that contains the sidebar.
+        """
         super().__init__()
 
         self.store = store
