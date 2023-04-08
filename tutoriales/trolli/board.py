@@ -24,9 +24,19 @@ from data_store import DataStore
 
 
 class Board(UserControl):
+    """
+    A board.
+    """
     id_counter = itertools.count()
 
     def __init__(self, app, store: DataStore, name: str):
+        """
+        Create a new board.
+
+        :param app: The app that contains this board.
+        :param store: The data store.
+        :param name: The name of the board.
+        """
         super().__init__()
 
         self.board_id = next(Board.id_counter)
@@ -60,6 +70,8 @@ class Board(UserControl):
     def build(self):
         """
         Build the view for this board.
+
+        :return: The view for this board.
         """
         self.view = Container(
             content=Column(
@@ -80,6 +92,10 @@ class Board(UserControl):
     def resize(self, nav_rail_extended, width, height):
         """
         Resizes the board to fit the new width and height.
+
+        :param nav_rail_extended: Whether the navigation rail is extended.
+        :param width: The new width.
+        :param height: The new height.
         """
         self.list_wrap.width = (width - 310) if nav_rail_extended else (width - 50)
         self.view.height = height
@@ -89,6 +105,8 @@ class Board(UserControl):
     def create_list(self, event):
         """
         Creates a new list for this board.
+
+        :param event: The event that triggered this method.
         """
         option_dict = {
             colors.LIGHT_GREEN: self.color_option_creator(colors.LIGHT_GREEN),
@@ -111,6 +129,8 @@ class Board(UserControl):
         def set_color(event):
             """
             Sets the color of the new list.
+
+            :param event: The event that triggered this method.
             """
             color_options.data = event.control.data
 
