@@ -18,7 +18,15 @@ from app_layout import AppLayout
 
 
 class TrelloApp(UserControl):
+    """
+    The main app.
+    """
     def __init__(self, page: Page) -> None:
+        """
+        Create a new app.
+
+        :param page: The page that contains the app.
+        """
         super().__init__()
 
         self.page = page
@@ -50,6 +58,11 @@ class TrelloApp(UserControl):
         self.page.update()
     
     def build(self):
+        """
+        Build the app.
+        
+        :return: The app layout.
+        """
         self.layout = AppLayout(self, self.page)
 
         return self.layout
