@@ -20,7 +20,9 @@ from data_store import DataStore
 
 
 class Sidebar(UserControl):
-
+    """
+    The sidebar for the app.
+    """
     def __init__(self, app_layout, store: DataStore, page):
         """
         Create a new sidebar.
@@ -74,6 +76,9 @@ class Sidebar(UserControl):
         self.toggle_nav_rail_button = IconButton(icons.ARROW_BACK)
 
     def build(self):
+        """
+        Builds the sidebar.
+        """
         self.view = Container (
             content=Column([
                 Row([
@@ -96,7 +101,8 @@ class Sidebar(UserControl):
                 ),
                 self.bottom_nav_rail
             ],
-            tight=True),
+            tight=True
+            ),
             padding=padding.all(15),
             margin=margin.all(0),
             width=250,
@@ -168,6 +174,11 @@ class Sidebar(UserControl):
         self.page.update()
 
     def top_nav_change(self, event):
+        """
+        Changes the top navigation rail.
+
+        :param event: The event that triggered the change.
+        """
         index = event if type(event) == int else event.control.selected_index
 
         self.bottom_nav_rail.selected_index = None
@@ -183,6 +194,9 @@ class Sidebar(UserControl):
         self.update()
     
     def bottom_nav_change(self, event):
+        """
+        Changes the bottom navigation rail.
+        """
         index = event if type(event) == int else event.control.selected_index
 
         self.top_nav_rail.selected_index = None
