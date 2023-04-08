@@ -20,10 +20,11 @@ from flet import (
 )
 
 from sidebar import Sidebar
+from data_store import DataStore
 
 
 class AppLayout(Row):
-    def __init__(self, app, page, store: DataStore *args, **kwargs):
+    def __init__(self, app, page, store: DataStore, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
         self.app = app
