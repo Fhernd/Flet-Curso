@@ -9,7 +9,6 @@ from flet import (
     Container,
     Control,
     IconButton,
-    Page,
     PopupMenuButton,
     PopupMenuItem,
     RoundedRectangleBorder,
@@ -21,10 +20,21 @@ from flet import (
 
 from sidebar import Sidebar
 from data_store import DataStore
+from board import Board
 
 
 class AppLayout(Row):
+    """
+    The app layout.
+    """
     def __init__(self, app, page, store: DataStore, *args, **kwargs):
+        """
+        Create a new app layout.
+
+        :param app: The app that contains the layout.
+        :param page: The page that contains the layout.
+        :param store: The data store.
+        """
         super().__init__(*args, **kwargs)
 
         self.app = app
@@ -100,10 +110,18 @@ class AppLayout(Row):
 
     @property
     def active_view(self):
+        """
+        Active view
+        """
         return self._active_view
     
     @active_view.setter
     def active_view(self, view):
+        """
+        Establece la vista activa.
+
+        :param view: La vista a establecer como activa.
+        """
         self._active_view = view
         self.controls[-1] = self._active_view
         self.sidebar.sync_board_destinations()
