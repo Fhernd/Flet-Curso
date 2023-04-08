@@ -24,8 +24,8 @@ from flet import (
     UserControl
 )
 
-from tiem import Item
-from data_source import DataSource
+from item import Item
+from data_store import DataSource
 
 class BoardList(UserControl):
     id_counter = itertools.count()
