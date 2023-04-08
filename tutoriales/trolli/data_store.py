@@ -7,7 +7,11 @@ if TYPE_CHECKING:
 
 
 class DataStore:
+    """
+    A data store.
 
+    An abstract class that defines the interface for a data store.
+    """
     def add_board(self, model) -> None:
         """
         Add a new board to the data store.
