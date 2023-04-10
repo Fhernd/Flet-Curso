@@ -24,6 +24,7 @@ from flet import (
 from app_layout import AppLayout
 from data_store import DataStore
 from memory_store import InMemoryStore
+from board import Board
 from user import User
 
 
@@ -192,13 +193,17 @@ class TrelloApp(UserControl):
         """
         pass
 
-    def create_new_board(self, name):
+    def create_new_board(self, board_name):
         """
         Create a new board.
 
         :param name: The name of the new board.
         """
-        pass
+        new_board = Board(self, self.store, board_name)
+
+        self.store.add_board(new_board)
+
+        self.layout.hydrate_all_boards_view()
 
     def delete_board(self, event):
         """
