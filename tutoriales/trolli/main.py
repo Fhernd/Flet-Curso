@@ -117,14 +117,6 @@ class TrelloApp(UserControl):
 
         :param event: The event that triggered this action.
         """
-        pass
-    
-    def route_change(self, event):
-        """
-        Handle a route change.
-
-        :param event: The event that triggered this action.
-        """
         def close_dialog(event):
             if user_name.value == '' or password.value == '':
                 user_name.error_text = 'Please enter a user name.'
@@ -167,6 +159,14 @@ class TrelloApp(UserControl):
         dialog.open = True
 
         self.page.update()
+    
+    def route_change(self, event):
+        """
+        Handle a route change.
+
+        :param event: The event that triggered this action.
+        """
+        pass
     
     def add_board(self, board):
         """
