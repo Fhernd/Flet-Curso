@@ -4,14 +4,18 @@ from flet import (
     icons,
     margin,
     padding,
-    Theme,
+    AlertDialog,
     AppBar,
+    Column,
     Container,
+    ElevatedButton,
     Icon,
     Page,
     PopupMenuButton,
     PopupMenuItem,
     Text,
+    TextField,
+    Theme,
     UserControl,
     View
 )
@@ -19,6 +23,7 @@ from flet import (
 from app_layout import AppLayout
 from data_store import DataStore
 from memory_store import InMemoryStore
+from user import User
 
 
 class TrelloApp(UserControl):
@@ -120,7 +125,48 @@ class TrelloApp(UserControl):
 
         :param event: The event that triggered this action.
         """
-        pass
+        def close_dialog(event):
+            if user_name.value == '' or password.value == '':
+                user_name.error_text = 'Please enter a user name.'
+                password.error_text = 'Please enter a password.'
+                
+                self.page.update()
+                
+                return
+            else:
+                user = User(user_name.value, password.value)
+                
+                if user not in self.store.get_users():
+                    self.store.add_user(user)
+                
+                self.user = user_name.value
+                self.page.client_storage.set('current_user', user_name.value)
+            
+            dialog.open = False
+
+            self.appbar_items[0] = PopupMenuItem(text=f"{self.page.client_storage.get('current_user')}'s Profile")
+
+            self.page.update()
+        
+        user_name = TextField(label='User name')
+        password = TextField(label='Password', password=True)
+
+        dialog = AlertDialog(
+            title=Text('Please enter your login credentials'),
+            content=Column([
+                user_name,
+                password,
+                ElevatedButton(text='Login', on_click=close_dialog)
+            ],
+            tight=True
+            ),
+            on_dismiss=lambda e: print('Modal dialog dismissed!')
+        )
+
+        self.page.dialog = dialog
+        dialog.open = True
+
+        self.page.update()
     
     def add_board(self, board):
         """
