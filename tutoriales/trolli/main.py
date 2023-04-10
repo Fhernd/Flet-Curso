@@ -212,7 +212,7 @@ class TrelloApp(UserControl):
 
         create_button = ElevatedButton(
             text='Create',
-            bgcolor=colors.BLUE_200
+            bgcolor=colors.BLUE_200,
             on_click=close_dialog,
             disabled=True
         )
