@@ -15,6 +15,7 @@ from flet import (
 )
 
 from app_layout import AppLayout
+from memory_store import InMemoryStore
 
 
 class TrelloApp(UserControl):
@@ -60,7 +61,7 @@ class TrelloApp(UserControl):
     def build(self):
         """
         Build the app.
-        
+
         :return: The app layout.
         """
         self.layout = AppLayout(self, self.page)
@@ -68,23 +69,20 @@ class TrelloApp(UserControl):
         return self.layout
 
 
+def main(page: Page):
+    page.title = 'Flet Trello Clone - Trolli'
+    
+    page.padding = 0
+    page.theme = Theme(font_family='Verdana')
+    page.theme.page_transitions.windows = 'cupertino'
+    page.bgcolor = colors.BLUE_GREY_200
+
+    app = TrelloApp(page, InMemoryStore)
+    page.add(app)
+    page.update()
+
+    app.initialize()
+
+
 if __name__ == '__main__':
-
-    def main(page: Page):
-        page.title = 'Flet Trello Clone - Trolli'
-        
-        page.padding = 0
-        page.theme = Theme(
-            font_family={
-                'Pacifico': '/Pacifico-Regular.ttf'
-            }
-        )
-        page.theme.page_transitions.windows = 'cupertino'
-        page.bgcolor = colors.BLUE_GREY_200
-
-        page.update()
-        app = TrelloApp(page)
-        page.add(app)
-
-
     flet.app(target=main, assets_dir='../assets', view=flet.WEB_BROWSER)
