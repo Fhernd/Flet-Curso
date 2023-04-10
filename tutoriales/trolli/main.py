@@ -13,6 +13,7 @@ from flet import (
     Page,
     PopupMenuButton,
     PopupMenuItem,
+    TemplateRoute,
     Text,
     TextField,
     Theme,
@@ -166,7 +167,22 @@ class TrelloApp(UserControl):
 
         :param event: The event that triggered this action.
         """
-        pass
+        troute = TemplateRoute(self.page.route)
+
+        if troute.math('/'):
+            self.page.go('/boards')
+        elif troute.math('/boards/:id'):
+            if int(troute.id) > len(self.store.get_boards()):
+                self.page.go('/')
+                return
+            
+            self.layout.set_board_view(int(troute.id))
+        elif troute.math('/boards'):
+            self.layout.set_board_list_view()
+        elif troute.math('/members'):
+            self.layout.set_members_view()
+        
+        self.page.update()
     
     def add_board(self, board):
         """
