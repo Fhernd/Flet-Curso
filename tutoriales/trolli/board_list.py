@@ -42,7 +42,7 @@ class BoardList(UserControl):
         super().__init__()
 
         self.board_list_id = next(BoardList.id_counter)
-        self.store: DataSource = store
+        self.store: DataStore = store
         self.board: Board = board
         self.title = title
         self.color = color

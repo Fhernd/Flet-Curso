@@ -105,6 +105,46 @@ class TrelloApp(UserControl):
             self.create_new_board('My first board')
         
         self.page.go('/')
+    
+    def login(self, event):
+        """
+        Log in to the app.
+
+        :param event: The event that triggered this action.
+        """
+        pass
+    
+    def route_change(self, event):
+        """
+        Handle a route change.
+
+        :param event: The event that triggered this action.
+        """
+        pass
+    
+    def add_board(self, board):
+        """
+        Add a board to the app.
+
+        :param board: The board to add.
+        """
+        pass
+
+    def create_new_board(self, name):
+        """
+        Create a new board.
+
+        :param name: The name of the new board.
+        """
+        pass
+
+    def delete_board(self, event):
+        """
+        Delete a board.
+
+        :param event: The event that triggered this action.
+        """
+        pass
 
 
 def main(page: Page):
