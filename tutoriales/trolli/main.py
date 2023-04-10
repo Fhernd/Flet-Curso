@@ -72,7 +72,14 @@ class TrelloApp(UserControl):
 
         :return: The app layout.
         """
-        self.layout = AppLayout(self, self.page)
+        self.layout = AppLayout(
+            self,
+            self.page,
+            self.store,
+            tight=True,
+            expand=True,
+            vertical_alignment='start'
+        )
 
         return self.layout
 
