@@ -13,6 +13,7 @@ from flet import (
     Page,
     PopupMenuButton,
     PopupMenuItem,
+    Row,
     TemplateRoute,
     Text,
     TextField,
@@ -191,7 +192,52 @@ class TrelloApp(UserControl):
 
         :param board: The board to add.
         """
-        pass
+        def close_dialog(event):
+            if (hasattr(event.control, 'text') and not event.control.text == 'Cancel') or (type(event.control) is TextField and event.control.text != ''):
+                self.create_new_board(dialog_text.value)
+            
+            dialog.open = False
+            self.page.update()
+        
+        def textfield_change(event):
+            if dialog_text.value == '':
+                create_button.disabled = True
+            else:
+                create_button.disabled = False
+
+            self.page.update()
+        
+
+        dialog_text = TextField(label='New board name', on_change=close_dialog, on_change=textfield_change)
+
+        create_button = ElevatedButton(
+            text='Create',
+            bgcolor=colors.BLUE_200
+            on_click=close_dialog,
+            disabled=True
+        )
+
+        dialog = AlertDialog(
+            title=Text('Name your new board'),
+            content=Column([
+                dialog_text,
+                Row([
+                    ElevatedButton(text='Cancel', on_click=close_dialog),
+                    create_button
+                ],
+                alignment='spaceBetween'
+                )
+            ],
+            tight=True,
+            ),
+            on_dismiss=lambda e: print('Modal dialog dismissed!')
+        )
+
+        self.page.dialog = dialog
+        dialog.open = True
+        self.page.update()
+        
+        dialog_text.focus()
 
     def create_new_board(self, board_name):
         """
