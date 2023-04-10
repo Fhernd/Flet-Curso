@@ -25,12 +25,12 @@ from flet import (
 )
 
 from item import Item
-from data_store import DataSource
+from data_store import DataStore
 
 class BoardList(UserControl):
     id_counter = itertools.count()
 
-    def __init__(self, board: 'Board', store: DataSource, title: str, color: str = ''):
+    def __init__(self, board: 'Board', store: DataStore, title: str, color: str = ''):
         """
         Creates a new board list.
 
