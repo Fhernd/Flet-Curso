@@ -15,6 +15,7 @@ from flet import (
 )
 
 from app_layout import AppLayout
+from data_store import DataStore
 from memory_store import InMemoryStore
 
 
@@ -22,7 +23,7 @@ class TrelloApp(UserControl):
     """
     The main app.
     """
-    def __init__(self, page: Page) -> None:
+    def __init__(self, page: Page, store: DataStore) -> None:
         """
         Create a new app.
 
@@ -31,9 +32,16 @@ class TrelloApp(UserControl):
         super().__init__()
 
         self.page = page
+        self.store: DataStore = store
+
+        self.page.on_route_change = self.route_change
+
+        self.boards = self.store.get_boards()
+
+        self.login_profile_button = PopupMenuItem(text='Log in', on_click=self.login)
 
         self.appbar_items = [
-            PopupMenuItem(text='Login'),
+            self.login_profile_button,
             PopupMenuItem(),
             PopupMenuItem(text='Settings'),
         ]
@@ -41,7 +49,7 @@ class TrelloApp(UserControl):
         self.appbar = AppBar(
             leading=Icon(icons.GRID_GOLDENRATIO_ROUNDED),
             leading_width=100,
-            title=Text('Trulli', size=32, text_align='start'),
+            title=Text('Trulli', font_family='Pacifico', size=32, text_align='start'),
             center_title=False,
             toolbar_height=75,
             bgcolor=colors.LIGHT_BLUE_ACCENT_700,
@@ -51,8 +59,8 @@ class TrelloApp(UserControl):
                         items=self.appbar_items,
                     ),
                     margin=margin.only(left=50, right=25),
-                )
-            ]
+                ),
+            ],
         )
 
         self.page.appbar = self.appbar
