@@ -3,6 +3,7 @@ from flet import (
     colors,
     icons,
     margin,
+    padding,
     Theme,
     AppBar,
     Container,
@@ -12,6 +13,7 @@ from flet import (
     PopupMenuItem,
     Text,
     UserControl,
+    View
 )
 
 from app_layout import AppLayout
@@ -82,6 +84,27 @@ class TrelloApp(UserControl):
         )
 
         return self.layout
+
+    def initialize(self):
+        """
+        Initialize the app.
+        """
+        self.page.views.clear()
+        self.page.views.append(
+            View(
+                '/',
+                [self.appbar, self.layout],
+                padding=padding.all(0),
+                bgcolor=colors.BLUE_GREY_200,
+            )
+        )
+
+        self.page.update()
+
+        if len(self.boards) == 0:
+            self.create_new_board('My first board')
+        
+        self.page.go('/')
 
 
 def main(page: Page):
