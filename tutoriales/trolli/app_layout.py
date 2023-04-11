@@ -76,10 +76,10 @@ class AppLayout(Row):
                                 "": RoundedRectangleBorder(radius=3)
                             }
                         )
-                    )
-                )
-            ],
-            padding=padding.only(top=15, right=50)),
+                    ),
+                    padding=padding.only(top=15, right=50),
+                ),
+            ]),
             Row([
                 TextField(
                     hint_text='Search all boards',
