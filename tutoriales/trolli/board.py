@@ -76,7 +76,7 @@ class Board(UserControl):
         self.view = Container(
             content=Column(
                 controls=[
-                    self.list
+                    self.list_wrap
                 ],
                 scroll='auto',
                 expand=True,
@@ -182,7 +182,7 @@ class Board(UserControl):
             self.page.update()
 
         dialog_text = TextField(
-            lable='New List Name',
+            label='New List Name',
             on_submit=close_dialog,
             on_change=textfield_change,
         )
