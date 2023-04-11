@@ -180,7 +180,7 @@ class TrelloApp(UserControl):
             
             self.layout.set_board_view(int(troute.id))
         elif troute.match('/boards'):
-            self.layout.set_board_list_view()
+            self.layout.set_all_boards_view()
         elif troute.match('/members'):
             self.layout.set_members_view()
         
