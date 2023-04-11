@@ -108,6 +108,7 @@ class Board(UserControl):
 
         :param event: The event that triggered this method.
         """
+        print('create list')
         option_dict = {
             colors.LIGHT_GREEN: self.color_option_creator(colors.LIGHT_GREEN),
             colors.RED_200: self.color_option_creator(colors.RED_200),
@@ -144,12 +145,12 @@ class Board(UserControl):
         
         color_options = GridView(
             runs_count=3,
-            max_extent=40,
+            max_extent=4,
             data="",
             height=150,
         )
 
-        for v in option_dict.values():
+        for _, v in option_dict.items():
             v.on_click = set_color
             color_options.controls.append(v)
         
@@ -219,7 +220,7 @@ class Board(UserControl):
         )
 
         self.page.dialog = dialog
-        self.open = True
+        dialog.open = True
         self.page.update()
         dialog_text.focus()
     
@@ -260,6 +261,6 @@ class Board(UserControl):
             height=10,
             width=10,
             padding=padding.all(5),
-            alignment='center',
+            alignment=alignment.center,
             data=color,
         )
