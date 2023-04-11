@@ -208,7 +208,7 @@ class TrelloApp(UserControl):
             self.page.update()
         
 
-        dialog_text = TextField(label='New board name', on_change=close_dialog, on_change=textfield_change)
+        dialog_text = TextField(label='New board name', on_submit=close_dialog, on_change=textfield_change)
 
         create_button = ElevatedButton(
             text='Create',
