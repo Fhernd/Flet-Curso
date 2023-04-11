@@ -269,7 +269,7 @@ def main(page: Page):
     page.theme.page_transitions.windows = 'cupertino'
     page.bgcolor = colors.BLUE_GREY_200
 
-    app = TrelloApp(page, InMemoryStore)
+    app = TrelloApp(page, InMemoryStore())
     page.add(app)
     page.update()
 
