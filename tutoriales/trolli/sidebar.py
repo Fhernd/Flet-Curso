@@ -60,14 +60,13 @@ class Sidebar(UserControl):
             destinations=self.top_nav_items,
             bgcolor=colors.BLUE_GREY,
             extended=True,
-            expand=True
+            height=110
         )
         
         self.bottom_nav_rail = NavigationRail(
             selected_index=None,
             label_type='all',
             on_change=self.bottom_nav_change,
-            destinations=self.top_nav_items,
             bgcolor=colors.BLUE_GREY,
             extended=True,
             expand=True
