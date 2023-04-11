@@ -257,7 +257,8 @@ class TrelloApp(UserControl):
 
         :param event: The event that triggered this action.
         """
-        pass
+        self.store.remove_board(event.control.data)
+        self.layout.set_all_boards_view()
 
 
 def main(page: Page):
