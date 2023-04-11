@@ -219,6 +219,7 @@ class Board(UserControl):
         )
 
         self.page.dialog = dialog
+        self.open = True
         self.page.update()
         dialog_text.focus()
     
