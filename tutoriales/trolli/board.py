@@ -145,7 +145,7 @@ class Board(UserControl):
         
         color_options = GridView(
             runs_count=3,
-            max_extent=4,
+            max_extent=40,
             data="",
             height=150,
         )
