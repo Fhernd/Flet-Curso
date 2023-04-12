@@ -94,26 +94,26 @@ class BoardList(UserControl):
                     PopupMenuButton(
                         items=[
                             PopupMenuItem(
-                                content=Text('Edit'),
+                                content=Text('Edit',
                                 style='labelMedium',
                                 text_align='center',
-                                color=self.color,
+                                color=self.color,),
                                 on_click=self.edit_title
                             ),
                             PopupMenuItem(),
                             PopupMenuItem(
-                                content=Text('Delete'),
+                                content=Text('Delete',
                                 style='labelMedium',
                                 text_align='center',
-                                color=self.color,
+                                color=self.color),
                                 on_click=self.delete_list
                             ),
                             PopupMenuItem(),
                             PopupMenuItem(
-                                content=Text('Move List'),
+                                content=Text('Move List',
                                 style='labelMedium',
                                 text_align='center',
-                                color=self.color,
+                                color=self.color),
                             ),
                         ],
                     ),
