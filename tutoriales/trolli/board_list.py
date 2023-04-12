@@ -302,7 +302,7 @@ class BoardList(UserControl):
                 bgcolor=colors.BLACK26,
                 border_radius=border_radius.all(30),
                 height=3,
-                alignment=alignment.centerRight,
+                alignment=alignment.center_right,
                 width=200,
                 opacity=0.0,
             )
