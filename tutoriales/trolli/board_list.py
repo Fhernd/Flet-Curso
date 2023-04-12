@@ -294,8 +294,8 @@ class BoardList(UserControl):
         """
         control_list = [x.controls[1] for x in self.items.controls]
 
-        to_index = control_list.index(swap_control) if swap_control else None
-        from_index = control_list.index(chosen_control) if chosen_control else None
+        to_index = control_list.index(swap_control) if swap_control in control_list else None
+        from_index = control_list.index(chosen_control) if chosen_control in control_list else None
 
         control_to_add = Column([
             Container(
@@ -316,6 +316,8 @@ class BoardList(UserControl):
             self.items.controls.insert(to_index, control_to_add)
         else:
             new_item = Item(self, self.store, item) if item else Item(self, self.store, self.new_item_field.value)
+            control_to_add.controls.append(new_item)
+            self.items.controls.append(control_to_add)
             self.store.add_item(self.board_list_id, new_item)
             self.new_item_field.value = ''
         
