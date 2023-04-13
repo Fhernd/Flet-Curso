@@ -233,7 +233,7 @@ class Board(UserControl):
             event: The event that triggered this function.
         """
         self.board_lists.remove(list)
-        self.store.remove_list(self.board_id. list.board_list_id)
+        self.store.remove_list(self.board_id, list.board_list_id)
     
     def add_list(self, list: BoardList):
         """
