@@ -96,7 +96,7 @@ class InMemoryStore(DataStore):
         :param board: The board to remove the list from.
         :param id: The id of the list to remove.
         """
-        self.board_lists[board] = [l for l in self.board_lists[board] if l.id == id]
+        self.board_lists[board] = [l for l in self.board_lists[board] if not l.board_list_id == id]
     
     def add_user(self, user: 'User'):
         """
