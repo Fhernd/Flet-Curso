@@ -177,6 +177,7 @@ class AppLayout(Row):
         """
         Rehidrata la vista de todos los tableros.
         """
+        print('Hydrating all boards view', self.store.get_boards())
         self.all_boards_view.controls[-1] = Row([
             Container(
                 content=Row([
@@ -195,7 +196,7 @@ class AppLayout(Row):
                                         style='labelMedium',
                                         text_align='center'
                                     ),
-                                    on_click=self.delete_board,
+                                    on_click=self.app.delete_board,
                                     data=b
                                 ),
                                 PopupMenuItem(),
@@ -221,7 +222,7 @@ class AppLayout(Row):
                 width=250,
                 data=b
             )
-            for b in self.app.boards
+            for b in self.store.get_boards()
         ],
         wrap=True
         )
