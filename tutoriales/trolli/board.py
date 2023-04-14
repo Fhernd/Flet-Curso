@@ -232,9 +232,9 @@ class Board(UserControl):
             list (BoardList): The list to remove.
             event: The event that triggered this function.
         """
-        print('remove list', self.board_lists)
         self.board_lists.remove(list)
         self.store.remove_list(self.board_id, list.board_list_id)
+        self.update()
     
     def add_list(self, list: BoardList):
         """
@@ -243,7 +243,6 @@ class Board(UserControl):
         Args:
             list (BoardList): The list to add.
         """
-        print('add list', self.board_lists)
         self.board_lists.insert(-1, list)
         self.store.add_list(self.board_id, list)
 
