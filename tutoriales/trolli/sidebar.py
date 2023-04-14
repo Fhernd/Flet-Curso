@@ -190,7 +190,7 @@ class Sidebar(UserControl):
         elif index == 1:
             self.page.route = '/members'
         
-        self.update()
+        self.page.update()
     
     def bottom_nav_change(self, event):
         """
