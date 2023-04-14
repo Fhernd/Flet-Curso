@@ -177,7 +177,6 @@ class AppLayout(Row):
         """
         Rehidrata la vista de todos los tableros.
         """
-        print('Hydrating all boards view', self.store.get_boards())
         self.all_boards_view.controls[-1] = Row([
             Container(
                 content=Row([
@@ -235,7 +234,7 @@ class AppLayout(Row):
 
         :param event: El evento que disparó el click.
         """
-        self.sidebar.bottom_nav_change(self.store.get_boards().index(event.control.dadta))
+        self.sidebar.bottom_nav_change(self.store.get_boards().index(event.control.data))
     
     def page_resize(self, event=None):
         """
