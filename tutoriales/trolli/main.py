@@ -193,7 +193,7 @@ class TrelloApp(UserControl):
         :param board: The board to add.
         """
         def close_dialog(event):
-            if (hasattr(event.control, 'text') and not event.control.text == 'Cancel') or (type(event.control) is TextField and event.control.text != ''):
+            if (hasattr(event.control, 'text') and not event.control.text == 'Cancel') or (type(event.control) is TextField and event.control.value != ''):
                 self.create_new_board(dialog_text.value)
             
             dialog.open = False
